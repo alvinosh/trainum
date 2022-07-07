@@ -1,0 +1,35 @@
+@use 'sass:meta' as meta;
+
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+@function get($keys...) {
+  @return map-deep-get($colors, $keys...);
+}
+
+@function ui-get($keys...) {
+  @return map-deep-get($ui-colors, $keys...);
+}
+
+$colors: (
+  grey: (
+    100: #fff,
+    200: #ddd,
+    300: #bbb,
+    400: #999,
+    500: #777,
+    600: #555,
+    700: #333,
+    800: #111,
+    900: #000,
+  ),
+);
+
+$ui-colors: (
+  logo: get(grey, 600),
+  input-label: get(grey, 300),
+);

@@ -1,0 +1,6 @@
+@use 'colors.scss' as colors;
+
+h1 {
+  color: colors.ui-get(logo);
+  font-family: 'Inter', sans-serif;
+}

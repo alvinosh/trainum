@@ -1,0 +1,90 @@
+{
+  "projectType": "application",
+  "sourceRoot": "apps/trainum/src",
+  "prefix": "trainum",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/trainum",
+        "index": "apps/trainum/src/index.html",
+        "main": "apps/trainum/src/main.ts",
+        "polyfills": "apps/trainum/src/polyfills.ts",
+        "tsConfig": "apps/trainum/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/trainum/src/favicon.ico", "apps/trainum/src/assets"],
+        "styles": ["apps/trainum/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/trainum/src/environments/environment.ts",
+              "with": "apps/trainum/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "trainum:build:production"
+        },
+        "development": {
+          "browserTarget": "trainum:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "proxyConfig": "apps/trainum/proxy.conf.json"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "trainum:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/trainum/**/*.ts", "apps/trainum/**/*.html"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/trainum"],
+      "options": {
+        "jestConfig": "apps/trainum/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

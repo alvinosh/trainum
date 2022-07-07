@@ -31,9 +31,14 @@ $colors: (
 
 $ui-colors: (
   logo: get(grey, 600),
+  footer: get(grey, 700),
   input: (
     label: get(grey, 300),
     border: get(grey, 300),
     text: get(grey, 600),
+  ),
+  button: (
+    background: get(grey, 700),
+    text: get(grey, 200),
   ),
 );

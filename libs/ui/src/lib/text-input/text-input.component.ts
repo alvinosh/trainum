@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'trainum-text-input',
@@ -11,10 +6,6 @@ import {
   styleUrls: ['./text-input.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TextInputComponent implements OnInit {
+export class TextInputComponent {
   @Input() label = ' Text Input ';
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

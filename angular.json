@@ -5,6 +5,7 @@
     "api": "apps/api",
     "api-interfaces": "libs/api-interfaces",
     "trainum": "apps/trainum",
-    "trainum-e2e": "apps/trainum-e2e"
+    "trainum-e2e": "apps/trainum-e2e",
+    "ui": "libs/ui"
   }
 }

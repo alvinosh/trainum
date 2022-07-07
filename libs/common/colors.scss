@@ -31,5 +31,9 @@ $colors: (
 
 $ui-colors: (
   logo: get(grey, 600),
-  input-label: get(grey, 300),
+  input: (
+    label: get(grey, 300),
+    border: get(grey, 300),
+    text: get(grey, 600),
+  ),
 );

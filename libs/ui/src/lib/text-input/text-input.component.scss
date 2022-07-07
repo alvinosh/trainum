@@ -1,0 +1,27 @@
+@use 'colors.scss' as c;
+
+.text-input {
+  width: 100%;
+}
+
+.text-input input {
+  width: 100%;
+  height: 3rem;
+
+  padding: 0.2rem 0.6rem;
+  border: 1px solid c.ui-get(input, border);
+  border-radius: 0.25rem;
+
+  font-size: 1rem;
+  color: c.ui-get(input, text);
+}
+
+label {
+  font-size: 1.2rem;
+  color: c.ui-get(input, label);
+}
+
+.text-input input,
+label {
+  font-family: 'Inter', sans-serif;
+}

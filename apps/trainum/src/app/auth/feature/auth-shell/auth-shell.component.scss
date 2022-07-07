@@ -1,6 +1,38 @@
 @use 'colors.scss' as colors;
 
+.body {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5vh;
+}
+
+.logo {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.logo fa-icon {
+  color: colors.ui-get(logo);
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+.form {
+  background-color: rebeccapurple;
+  min-height: 40vh;
+}
+
 h1 {
   color: colors.ui-get(logo);
+
   font-family: 'Inter', sans-serif;
+  font-weight: 60 0;
+  font-size: 3rem;
 }

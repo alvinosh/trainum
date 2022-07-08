@@ -1,1 +1,24 @@
-<p>signup works!</p>
+<form class="form" [formGroup]="signupForm" (submit)="submitForm()">
+  <trainum-text-input
+    label="Username"
+    formControlName="username"
+  ></trainum-text-input>
+  <trainum-text-input
+    label="Email"
+    formControlName="email"
+  ></trainum-text-input>
+  <trainum-text-input
+    label="Password"
+    formControlName="password"
+  ></trainum-text-input>
+  <trainum-text-input
+    label="Confrim Password"
+    formControlName="confirm_password"
+  ></trainum-text-input>
+  <trainum-button>Sign Up</trainum-button>
+
+  <trainum-hyperlink
+    [routerLink]="['../login']"
+    text="Log In Instead..."
+  ></trainum-hyperlink>
+</form>

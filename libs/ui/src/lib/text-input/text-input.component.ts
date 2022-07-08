@@ -23,11 +23,11 @@ export class TextInputComponent implements ControlValueAccessor {
     this.ngControl.valueAccessor = this;
   }
 
-  onBlur(event: any): void {
+  onBlur(): void {
     this.errors = this.ngControl.control?.errors;
   }
 
-  onChange: (value: string) => void = (_value: string) => {
+  onChange: (value: string) => void = () => {
     return;
   };
   onTouch: () => void = () => {
@@ -43,10 +43,10 @@ export class TextInputComponent implements ControlValueAccessor {
   writeValue(value: string): void {
     this.value = value;
   }
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: (value: string) => void): void {
     this.onChange = fn;
   }
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouch = fn;
   }
   setDisabledState(isDisabled: boolean) {

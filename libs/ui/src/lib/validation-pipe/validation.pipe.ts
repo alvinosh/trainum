@@ -20,6 +20,7 @@ export class ValidationPipe implements PipeTransform {
     return output;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private mapError(key: string, value: any, label: string): string {
     switch (key) {
       case 'required':
@@ -29,7 +30,7 @@ export class ValidationPipe implements PipeTransform {
       case 'maxlength':
         return `${label} must be at most ${value.requiredLength} characters long`;
       case 'email':
-        return '${label} must be a valid email address';
+        return `${label} must be a valid email address`;
       case 'min':
         return `${label} must be at least ${value.min}`;
       case 'max':

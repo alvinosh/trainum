@@ -7,6 +7,13 @@
     label="Password"
     formControlName="password"
   ></trainum-text-input>
+  <trainum-hyperlink
+    [routerLink]="['auth', 'signup']"
+    text="Forgot Password..."
+  ></trainum-hyperlink>
   <trainum-button>Log In</trainum-button>
-  <trainum-hyperlink text="Sign Up Instead..."></trainum-hyperlink>
+  <trainum-hyperlink
+    [routerLink]="['../signup']"
+    text="Sign Up Instead..."
+  ></trainum-hyperlink>
 </form>

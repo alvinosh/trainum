@@ -2,8 +2,7 @@
 
 .body {
   width: 100vw;
-  max-height: 100vh;
-  height: 100vh;
+  min-height: 100vh;
 
   display: flex;
   flex-flow: column nowrap;
@@ -12,6 +11,8 @@
 
   padding-top: 15vh;
 
+  overflow-y: scroll;
+
   gap: 8vh;
 }
 
@@ -19,6 +20,8 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+
+  margin-bottom: 4vh;
 }
 
 .logo fa-icon {
@@ -30,9 +33,12 @@
 .form {
   min-height: 40vh;
   min-width: 80vw;
+  max-width: 80vw;
 
   display: flex;
   justify-content: center;
+
+  margin-bottom: 4vh;
 }
 
 h1 {
@@ -42,11 +48,6 @@ h1 {
   font-weight: 60 0;
   font-size: 3rem;
 }
-
-svg {
-  margin-top: auto;
-}
-
 svg path {
   fill: colors.ui-get(footer);
 }

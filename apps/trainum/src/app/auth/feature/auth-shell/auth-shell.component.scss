@@ -9,8 +9,6 @@
   align-items: center;
   justify-content: center;
 
-  padding-top: 15vh;
-
   overflow-y: scroll;
 
   gap: 8vh;
@@ -21,6 +19,7 @@
   flex-flow: column nowrap;
   align-items: center;
 
+  margin-top: 8vh;
   margin-bottom: 4vh;
 }
 
@@ -48,6 +47,11 @@ h1 {
   font-weight: 60 0;
   font-size: 3rem;
 }
+
+svg {
+  margin-top: auto;
+}
+
 svg path {
   fill: colors.ui-get(footer);
 }

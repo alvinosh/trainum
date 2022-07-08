@@ -3,7 +3,7 @@
   "version": 2,
   "projects": {
     "api": "apps/api",
-    "api-interfaces": "libs/api-interfaces",
+    "models": "libs/models",
     "trainum": "apps/trainum",
     "trainum-e2e": "apps/trainum-e2e",
     "ui": "libs/ui"

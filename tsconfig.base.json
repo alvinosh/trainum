@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@trainum/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@trainum/models/*": ["libs/models/src/lib/*"],
       "@trainum/ui": ["libs/ui/src/index.ts"]
     }
   },

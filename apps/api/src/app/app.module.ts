@@ -7,7 +7,7 @@ import { ATGuard } from './common/guards';
 import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), AuthModule, PrismaModule],
+  imports: [ConfigModule.forRoot({ isGlobal: true }), AuthModule, PrismaModule],
   providers: [
     {
       provide: APP_GUARD,

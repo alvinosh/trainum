@@ -5,17 +5,19 @@ import { CreateUserDto, LoginUserDto } from '@trainum/models/auth';
 import { Token } from '@trainum/models/types';
 
 import { ATGuard, RTGuard } from '../common/guards';
-import { RT, UserId } from '../common/decorators';
+import { Public, RT, UserId } from '../common/decorators';
 
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
+  @Public()
   @Post('/local/signup')
   async signup(@Body() dto: CreateUserDto): Promise<Token> {
     return this.authService.signup(dto);
   }
 
+  @Public()
   @Post('/local/login')
   async login(@Body() dto: LoginUserDto): Promise<Token> {
     return this.authService.login(dto);
@@ -28,9 +30,9 @@ export class AuthController {
   }
 
   @Post('refresh')
+  @Public()
   @UseGuards(RTGuard)
   async refresh(@UserId() id: number, @RT() rt: string) {
-    console.log(id, rt);
     return this.authService.refresh(id, rt);
   }
 }

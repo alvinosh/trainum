@@ -3,12 +3,14 @@ import { PassportStrategy } from '@nestjs/passport';
 import { ATPayload, RTPayload } from '@trainum/models/auth';
 import { Request } from 'express';
 import { ForbiddenException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 export class RTStrategy extends PassportStrategy(Strategy, 'jwt-refresh') {
-  constructor() {
+  constructor(private configService: ConfigService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: 'rt-secret',
+      secretOrKey: configService.get<string>('JWT_RT_SECRET'),
+
       passReqToCallback: true,
     });
   }

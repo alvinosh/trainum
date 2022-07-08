@@ -6,6 +6,7 @@ import { Token } from '@trainum/models/types';
 
 import { ATGuard, RTGuard } from '../common/guards';
 import { Public, RT, UserId } from '../common/decorators';
+import { User } from '@trainum/models/entities';
 
 @Controller('auth')
 export class AuthController {
@@ -25,14 +26,14 @@ export class AuthController {
 
   @Post('logout')
   @UseGuards(ATGuard)
-  async logout(@UserId() id: number) {
+  async logout(@UserId() id: number): Promise<User> {
     return this.authService.logout(id);
   }
 
   @Post('refresh')
   @Public()
   @UseGuards(RTGuard)
-  async refresh(@UserId() id: number, @RT() rt: string) {
+  async refresh(@UserId() id: number, @RT() rt: string): Promise<Token> {
     return this.authService.refresh(id, rt);
   }
 }

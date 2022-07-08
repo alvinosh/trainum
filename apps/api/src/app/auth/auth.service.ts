@@ -6,10 +6,15 @@ import * as argon from 'argon2';
 import { CreateUserDto, LoginUserDto } from '@trainum/models/auth';
 import { Token } from '@trainum/models/types';
 import { User } from '@trainum/models/entities';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
-  constructor(private prisma: PrismaService, private jwtService: JwtService) {}
+  constructor(
+    private prisma: PrismaService,
+    private jwtService: JwtService,
+    private configService: ConfigService
+  ) {}
 
   async signup(dto: CreateUserDto): Promise<Token> {
     if (dto.password != dto.confirm_password)
@@ -92,7 +97,7 @@ export class AuthService {
         sub: id,
       },
       {
-        secret: 'at-secret',
+        secret: this.configService.get<string>('JWT_AT_SECRET'),
         expiresIn: '15min',
       }
     );
@@ -101,7 +106,7 @@ export class AuthService {
         sub: id,
       },
       {
-        secret: 'rt-secret',
+        secret: this.configService.get<string>('JWT_RT_SECRET'),
         expiresIn: '1w',
       }
     );

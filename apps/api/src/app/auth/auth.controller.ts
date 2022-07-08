@@ -1,8 +1,11 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 
-import { CreateUserDto } from '@trainum/models/auth';
+import { CreateUserDto, LoginUserDto } from '@trainum/models/auth';
 import { Token } from '@trainum/models/types';
+
+import { ATGuard, RTGuard } from '../common/guards';
+import { RT, UserId } from '../common/decorators';
 
 @Controller('auth')
 export class AuthController {
@@ -14,17 +17,20 @@ export class AuthController {
   }
 
   @Post('/local/login')
-  async login() {
-    return this.authService.login();
+  async login(@Body() dto: LoginUserDto): Promise<Token> {
+    return this.authService.login(dto);
   }
 
   @Post('logout')
-  async logout() {
-    return this.authService.logout();
+  @UseGuards(ATGuard)
+  async logout(@UserId() id: number) {
+    return this.authService.logout(id);
   }
 
   @Post('refresh')
-  async refresh() {
-    return this.authService.refresh();
+  @UseGuards(RTGuard)
+  async refresh(@UserId() id: number, @RT() rt: string) {
+    console.log(id, rt);
+    return this.authService.refresh(id, rt);
   }
 }

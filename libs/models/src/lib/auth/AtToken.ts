@@ -1,3 +1,3 @@
 export interface ATPayload {
-  id: number;
+  sub: number;
 }

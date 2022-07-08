@@ -10,7 +10,7 @@ export class ATStrategy extends PassportStrategy(Strategy, 'jwt') {
     });
   }
 
-  validate(payload: any): ATPayload {
-    return { id: payload.sub };
+  validate(payload: ATPayload): ATPayload {
+    return { sub: payload.sub };
   }
 }

@@ -27,6 +27,17 @@ $colors: (
     800: #111,
     900: #000,
   ),
+  red: (
+    100: #fff,
+    200: #ffc0c0,
+    300: #ff9090,
+    400: #ff6060,
+    500: #ff0000,
+    600: #cc0000,
+    700: #990000,
+    800: #660000,
+    900: #330000,
+  ),
 );
 
 $ui-colors: (
@@ -34,8 +45,10 @@ $ui-colors: (
   footer: get(grey, 700),
   input: (
     label: get(grey, 300),
+    disabled-label: get(grey, 200),
     border: get(grey, 300),
     text: get(grey, 600),
+    error: get(red, 400),
   ),
   button: (
     background: get(grey, 700),

@@ -1,4 +1,13 @@
-<div class="text-input">
-  <label for="text">{{ label }}</label>
-  <input type="text" name="text" id="text" />
+<div [class.errors]="errors" class="text-input">
+  <label [class.disabled]="disabled" for="text">{{ label }}</label>
+  <input
+    [disabled]="disabled"
+    [ngModel]="input_value"
+    (blur)="onBlur($event)"
+    (ngModelChange)="onChange($event)"
+    type="text"
+    name="text"
+    id="text"
+  />
+  <p *ngFor="let error of errors | validation: label">* {{ error.message }}</p>
 </div>

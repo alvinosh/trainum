@@ -16,12 +16,30 @@
   color: c.ui-get(input, text);
 }
 
-label {
+.text-input label {
   font-size: 1.2rem;
   color: c.ui-get(input, label);
 }
 
 .text-input input,
-label {
+.text-input label,
+.text-input p {
   font-family: 'Inter', sans-serif;
+}
+
+.text-input label.disabled {
+  color: c.ui-get(input, disabled-label);
+}
+
+.text-input.errors input {
+  border: 1px solid c.ui-get(input, error);
+}
+
+.text-input.errors label {
+  color: c.ui-get(input, error);
+}
+
+.text-input p {
+  font-size: 0.8rem;
+  color: c.ui-get(input, error);
 }

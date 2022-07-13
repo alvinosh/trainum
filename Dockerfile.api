@@ -7,9 +7,6 @@ COPY package*.json ./
 # generated prisma files
 COPY apps/api/prisma ./prisma/
 
-# COPY ENV variable
-COPY apps/api/.env ./
-
 # COPY
 COPY dist/apps/api .
 

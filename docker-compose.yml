@@ -18,6 +18,10 @@ services:
     stdin_open: true
     links:
       - postgres
+    environment:
+      DATABASE_URL: postgresql://trainum_user:trainum@postgres:5432/trainum_db?schema=public?connect_timeout=300
+      JWT_AT_SECRET: alvialvi
+      JWT_RT_SECRET: alvialvi
     build:
       context: .
       dockerfile: Dockerfile.api

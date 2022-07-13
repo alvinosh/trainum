@@ -3,26 +3,41 @@ import { ApiService } from '../../shared/services/api.service';
 
 import { CreateUserDto, LoginUserDto } from '@trainum/models/auth';
 import { User } from '@trainum/models/entities';
-import { Token } from '@trainum/models/types';
+import { ApiResponse, Token } from '@trainum/models/types';
 
-import { Observable } from 'rxjs';
-import { HttpEvent } from '@angular/common/http';
+import { map, Observable, pluck, tap } from 'rxjs';
+import { HttpClient, HttpEvent } from '@angular/common/http';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private api: ApiService) {}
+  private readonly ROUTES = {
+    login: () => this.api.createUrl('auth/local/login'),
+    signup: () => this.api.createUrl('auth/local/signup'),
+    logout: () => this.api.createUrl('auth/logout'),
+  };
 
-  public login(dto: LoginUserDto): Observable<HttpEvent<Token>> {
-    return this.api.post<Token>('/auth/local/login', dto);
+  constructor(
+    private api: ApiService,
+    private tokenService: TokenService,
+    private http: HttpClient
+  ) {}
+
+  public login(dto: LoginUserDto): Observable<Token> {
+    return this.http
+      .post<ApiResponse<Token>>(this.ROUTES.login(), dto)
+      .pipe(pluck('body'));
   }
 
-  public signup(dto: CreateUserDto): Observable<HttpEvent<Token>> {
-    return this.api.post<Token>('/auth/local/signup', dto);
+  public signup(dto: CreateUserDto): Observable<Token> {
+    return this.http
+      .post<Token>(this.ROUTES.signup(), dto)
+      .pipe(tap((response) => this.tokenService.saveToken(response)));
   }
 
-  public logout(): Observable<HttpEvent<User>> {
-    return this.api.post<User>('/auth/logout', {});
+  public logout(): Observable<User> {
+    return this.http.post<User>(this.ROUTES.logout(), {});
   }
 }

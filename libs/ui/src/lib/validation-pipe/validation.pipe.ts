@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { ValidationErrors } from '@angular/forms';
+import { isObservable } from 'rxjs';
 import { ValidationError } from '../types';
 
 @Pipe({
@@ -37,6 +38,8 @@ export class ValidationPipe implements PipeTransform {
         return `${label} must be at most ${value.max}`;
       case 'pattern':
         return `${label} must match the pattern ${value.requiredPattern}`;
+      case 'exists':
+        return `${label} already exists`;
       default:
         return `${label} Has An Error`;
     }

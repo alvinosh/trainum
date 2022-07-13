@@ -10,21 +10,21 @@ export class CreateUserDto {
   @IsEmail()
   @IsString()
   @IsNotEmpty()
-  email: string;
+  email?: string;
 
   @IsString()
   @IsNotEmpty()
   @MinLength(3)
   @MaxLength(20)
-  username: string;
+  username?: string;
 
   @MinLength(6)
   @MaxLength(100)
   @IsNotEmpty()
-  password: string;
+  password?: string;
 
   @MinLength(6)
   @MaxLength(100)
   @IsNotEmpty()
-  confirm_password: string;
+  confirm_password?: string;
 }

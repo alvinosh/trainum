@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { QueryStringParameters } from '../classes/query-string-params';
 import { UrlBuilder } from '../classes/url-builder';
 import { Constants } from '../constants/constants';
-
-import { ApiResponse } from '@trainum/models/types';
 
 @Injectable({
   providedIn: 'root',
@@ -15,19 +14,6 @@ export class ApiService {
     private http: HttpClient,
     private constants: Constants
   ) {}
-
-  public get<T>(url: string, options?: any) {
-    return this.http.get<T>(url, options);
-  }
-  public post<T>(url: string, data: any, options?: any) {
-    return this.http.post<T>(url, data, options);
-  }
-  public put<T>(url: string, data: any, options?: any) {
-    return this.http.put<T>(url, data, options);
-  }
-  public delete<T>(url: string, options?: any) {
-    return this.http.delete<T>(url, options);
-  }
 
   public createUrl(action: string, isMockAPI: boolean = false): string {
     const urlBuilder: UrlBuilder = new UrlBuilder(

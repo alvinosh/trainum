@@ -9,9 +9,9 @@ import {
 export class LoginUserDto {
   @IsString()
   @IsNotEmpty()
-  username: string;
+  username?: string;
   @MinLength(6)
   @MaxLength(100)
   @IsNotEmpty()
-  password: string;
+  password?: string;
 }

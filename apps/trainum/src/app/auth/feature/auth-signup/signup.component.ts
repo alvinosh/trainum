@@ -5,6 +5,9 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { CreateUserDto } from '@trainum/models/auth';
+import { AuthService } from '../../services/auth.service';
+import { UsernameExists } from '../../validators';
 
 @Component({
   selector: 'trainum-signup',
@@ -13,11 +16,11 @@ import {
 })
 export class SignupComponent {
   signupForm: FormGroup = this.fb.group({
-    username: new FormControl('', [
-      Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(20),
-    ]),
+    username: new FormControl(
+      '',
+      [Validators.required, Validators.minLength(3), Validators.maxLength(20)],
+      [UsernameExists]
+    ),
     email: new FormControl('', [
       Validators.required,
       Validators.minLength(6),
@@ -36,7 +39,7 @@ export class SignupComponent {
     ]),
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
 
   get form() {
     return {
@@ -48,6 +51,17 @@ export class SignupComponent {
   }
 
   submitForm() {
-    console.log(this.form);
+    const signup_dto: CreateUserDto = {
+      username: this.form.username.value,
+      email: this.form.email.value,
+      password: this.form.password.value,
+      confirm_password: this.form.confirm_password.value,
+    };
+
+    this.authService.signup(signup_dto).subscribe({
+      next: (response) => {
+        console.log(response);
+      },
+    });
   }
 }

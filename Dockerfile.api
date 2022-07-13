@@ -1,0 +1,23 @@
+FROM node:16-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+
+# generated prisma files
+COPY apps/api/prisma ./prisma/
+
+# COPY ENV variable
+COPY apps/api/.env ./
+
+# COPY
+COPY dist/apps/api .
+
+RUN npm install
+
+RUN npx prisma generate
+
+EXPOSE 3333
+
+# A command to start the server
+CMD ["node", "main.js"]

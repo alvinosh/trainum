@@ -1,0 +1,32 @@
+version: '3.9'
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    expose:
+      - 5432
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: trainum_user
+      POSTGRES_PASSWORD: trainum
+      POSTGRES_DB: trainum_db
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+  prisma-postgres-api:
+    stdin_open: true
+    links:
+      - postgres
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: prisma-postgres-api
+    depends_on:
+      - postgres
+    ports:
+      - '3333:3333'
+    restart: unless-stopped
+
+volumes:
+  postgres-data:

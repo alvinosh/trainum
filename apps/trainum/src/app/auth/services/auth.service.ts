@@ -17,6 +17,9 @@ export class AuthService {
     login: () => this.api.createUrl('auth/local/login'),
     signup: () => this.api.createUrl('auth/local/signup'),
     logout: () => this.api.createUrl('auth/logout'),
+
+    usernameExists: (username: string) =>
+      this.api.createUrlWithPathVariables('auth/username-exists', [username]),
   };
 
   constructor(
@@ -39,5 +42,9 @@ export class AuthService {
 
   public logout(): Observable<User> {
     return this.http.post<User>(this.ROUTES.logout(), {});
+  }
+
+  public usernameExists(username: string): Observable<boolean> {
+    return this.http.get<boolean>(this.ROUTES.usernameExists(username));
   }
 }

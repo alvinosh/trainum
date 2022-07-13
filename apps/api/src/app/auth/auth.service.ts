@@ -7,6 +7,7 @@ import { CreateUserDto, LoginUserDto } from '@trainum/models/auth';
 import { Token } from '@trainum/models/types';
 import { User } from '@trainum/models/entities';
 import { ConfigService } from '@nestjs/config';
+import { use } from 'passport';
 
 @Injectable()
 export class AuthService {
@@ -20,16 +21,10 @@ export class AuthService {
     if (dto.password != dto.confirm_password)
       throw new BadRequestException('Passwords do not match');
 
-    const user_email = await this.prisma.user.findUnique({
-      where: { email: dto.email },
-    });
-
-    const user_usrname = await this.prisma.user.findUnique({
-      where: { username: dto.username },
-    });
-
-    if (user_email) throw new BadRequestException('Email Already Exists');
-    if (user_usrname) throw new BadRequestException('Username Already Exists');
+    if (await this.emailExist(dto.email))
+      throw new BadRequestException('Email Already Exists');
+    if (await this.usernameExist(dto.username))
+      throw new BadRequestException('Username Already Exists');
 
     const user = await this.prisma.user.create({
       data: {
@@ -129,5 +124,21 @@ export class AuthService {
         hashedRt: await argon.hash(token),
       },
     });
+  }
+
+  async usernameExist(username: string): Promise<boolean> {
+    return (await this.prisma.user.findUnique({
+      where: { username: username },
+    }))
+      ? true
+      : false;
+  }
+
+  async emailExist(email: string): Promise<boolean> {
+    return (await this.prisma.user.findUnique({
+      where: { email: email },
+    }))
+      ? true
+      : false;
   }
 }

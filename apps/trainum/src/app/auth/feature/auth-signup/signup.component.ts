@@ -19,7 +19,7 @@ export class SignupComponent {
     username: new FormControl(
       '',
       [Validators.required, Validators.minLength(3), Validators.maxLength(20)],
-      [UsernameExists]
+      [UsernameExists(this.authService)]
     ),
     email: new FormControl('', [
       Validators.required,

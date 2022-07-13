@@ -25,7 +25,6 @@ export class TextInputComponent implements ControlValueAccessor {
 
   onBlur(): void {
     this.errors = this.ngControl.control?.errors;
-    console.log(this.errors);
   }
 
   onChange: (value: string) => void = () => {

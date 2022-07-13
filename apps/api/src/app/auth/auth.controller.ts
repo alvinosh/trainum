@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 
 import { CreateUserDto, LoginUserDto } from '@trainum/models/auth';
@@ -35,5 +35,11 @@ export class AuthController {
   @UseGuards(RTGuard)
   async refresh(@UserId() id: number, @RT() rt: string): Promise<Token> {
     return this.authService.refresh(id, rt);
+  }
+
+  @Get('username-exists/:username')
+  @Public()
+  async usernameExist(@Param('username') username): Promise<boolean> {
+    return this.authService.usernameExist(username);
   }
 }

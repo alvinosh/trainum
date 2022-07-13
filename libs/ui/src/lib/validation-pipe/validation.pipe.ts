@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { ValidationErrors } from '@angular/forms';
-import { isObservable } from 'rxjs';
 import { ValidationError } from '../types';
 
 @Pipe({

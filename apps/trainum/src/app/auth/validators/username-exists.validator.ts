@@ -1,12 +1,12 @@
-import {
-  AbstractControl,
-  AsyncValidatorFn,
-  ValidationErrors,
-} from '@angular/forms';
-import { Observable, of } from 'rxjs';
+import { AbstractControl } from '@angular/forms';
+import { map } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
-export const UsernameExists: AsyncValidatorFn = (
-  control: AbstractControl
-): Observable<ValidationErrors | null> => {
-  return of({ exists: false });
-};
+export const UsernameExists =
+  (authService: AuthService) => (control: AbstractControl) => {
+    return authService.usernameExists(control.value).pipe(
+      map((res) => {
+        return res ? { exists: true } : null;
+      })
+    );
+  };

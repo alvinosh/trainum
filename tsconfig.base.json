@@ -16,6 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@trainum/models/*": ["libs/models/src/lib/*"],
+
+      "@trainum/types": ["libs/ui/src/lib/types/index.ts"],
       "@trainum/ui": ["libs/ui/src/index.ts"]
     }
   },

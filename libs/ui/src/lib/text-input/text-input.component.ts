@@ -4,6 +4,7 @@ import {
   NgControl,
   ValidationErrors,
 } from '@angular/forms';
+import { InputTypes } from '../types';
 
 @Component({
   selector: 'trainum-text-input',
@@ -13,6 +14,8 @@ import {
 })
 export class TextInputComponent implements ControlValueAccessor {
   @Input() label = ' Text Input ';
+
+  @Input() type = InputTypes.Text;
 
   input_value = '';
   disabled = false;

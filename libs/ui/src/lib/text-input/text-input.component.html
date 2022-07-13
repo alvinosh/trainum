@@ -5,9 +5,9 @@
     [ngModel]="input_value"
     (blur)="onBlur()"
     (ngModelChange)="onChange($event)"
-    type="text"
+    [type]="type"
     name="text"
     id="text"
   />
-  <p *ngFor="let error of errors | validation: label">* {{ error.message }}</p>
+  <p *ngFor="let error of errors | validation: label">{{ error.message }}</p>
 </div>

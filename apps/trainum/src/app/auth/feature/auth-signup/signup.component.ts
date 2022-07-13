@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { CreateUserDto } from '@trainum/models/auth';
+import { InputTypes } from '@trainum/types';
 import { AuthService } from '../../services/auth.service';
 import { EmailExists, PasswordsMatch, UsernameExists } from '../../validators';
 
@@ -15,6 +16,8 @@ import { EmailExists, PasswordsMatch, UsernameExists } from '../../validators';
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent {
+  InputType = InputTypes;
+
   signupForm: FormGroup = this.fb.group({
     username: new FormControl(
       '',

@@ -16,6 +16,10 @@ services:
     restart: unless-stopped
   prisma-postgres-api:
     stdin_open: true
+    volumes:
+      - ./dist/apps/api:/app
+      - /app/node_modules
+      - /app/prisma
     links:
       - postgres
     environment:

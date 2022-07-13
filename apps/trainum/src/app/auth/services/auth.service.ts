@@ -5,8 +5,8 @@ import { CreateUserDto, LoginUserDto } from '@trainum/models/auth';
 import { User } from '@trainum/models/entities';
 import { ApiResponse, Token } from '@trainum/models/types';
 
-import { map, Observable, pluck, tap } from 'rxjs';
-import { HttpClient, HttpEvent } from '@angular/common/http';
+import { Observable, pluck, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { TokenService } from './token.service';
 
 @Injectable({
@@ -20,6 +20,9 @@ export class AuthService {
 
     usernameExists: (username: string) =>
       this.api.createUrlWithPathVariables('auth/username-exists', [username]),
+
+    emailExists: (username: string) =>
+      this.api.createUrlWithPathVariables('auth/email-exists', [username]),
   };
 
   constructor(
@@ -46,5 +49,9 @@ export class AuthService {
 
   public usernameExists(username: string): Observable<boolean> {
     return this.http.get<boolean>(this.ROUTES.usernameExists(username));
+  }
+
+  public emailExists(email: string): Observable<boolean> {
+    return this.http.get<boolean>(this.ROUTES.emailExists(email));
   }
 }

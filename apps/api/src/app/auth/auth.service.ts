@@ -7,7 +7,6 @@ import { CreateUserDto, LoginUserDto } from '@trainum/models/auth';
 import { Token } from '@trainum/models/types';
 import { User } from '@trainum/models/entities';
 import { ConfigService } from '@nestjs/config';
-import { use } from 'passport';
 
 @Injectable()
 export class AuthService {

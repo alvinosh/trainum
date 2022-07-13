@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { CreateUserDto } from '@trainum/models/auth';
 import { AuthService } from '../../services/auth.service';
-import { UsernameExists } from '../../validators';
+import { EmailExists, PasswordsMatch, UsernameExists } from '../../validators';
 
 @Component({
   selector: 'trainum-signup',
@@ -21,12 +21,16 @@ export class SignupComponent {
       [Validators.required, Validators.minLength(3), Validators.maxLength(20)],
       [UsernameExists(this.authService)]
     ),
-    email: new FormControl('', [
-      Validators.required,
-      Validators.minLength(6),
-      Validators.email,
-      Validators.maxLength(100),
-    ]),
+    email: new FormControl(
+      '',
+      [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.email,
+        Validators.maxLength(100),
+      ],
+      [EmailExists(this.authService)]
+    ),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(6),
@@ -36,6 +40,7 @@ export class SignupComponent {
       Validators.required,
       Validators.minLength(6),
       Validators.maxLength(100),
+      PasswordsMatch('password'),
     ]),
   });
 

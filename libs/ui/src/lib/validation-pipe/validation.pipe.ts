@@ -39,6 +39,8 @@ export class ValidationPipe implements PipeTransform {
         return `${label} must match the pattern ${value.requiredPattern}`;
       case 'exists':
         return `${label} already exists`;
+      case 'notmatching':
+        return `${label} does not match ${value}`;
       default:
         return `${label} Has An Error`;
     }

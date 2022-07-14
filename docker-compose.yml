@@ -4,9 +4,10 @@ services:
     image: postgres:latest
     container_name: postgres
     expose:
-      - 5432
+      - 6000
     ports:
-      - 5432:5432
+      - 6000:6000
+    command: -p 6000
     environment:
       POSTGRES_USER: trainum_user
       POSTGRES_PASSWORD: trainum
@@ -14,6 +15,17 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
     restart: unless-stopped
+  trainum:
+    stdin_open: true
+    tty: true
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    ports:
+      - 9090:9090
+    volumes:
+      - ./dist/apps/trainum:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/nginx.conf
   prisma-postgres-api:
     stdin_open: true
     volumes:
@@ -23,7 +35,7 @@ services:
     links:
       - postgres
     environment:
-      DATABASE_URL: postgresql://trainum_user:trainum@postgres:5432/trainum_db?schema=public?connect_timeout=300
+      DATABASE_URL: postgresql://trainum_user:trainum@postgres:6000/trainum_db?schema=public?connect_timeout=300
       JWT_AT_SECRET: alvialvi
       JWT_RT_SECRET: alvialvi
     build:

@@ -8,7 +8,9 @@
     "migrate": "npx prisma migrate dev",
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down"
   },
   "private": true,
   "dependencies": {

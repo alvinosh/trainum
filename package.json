@@ -5,12 +5,18 @@
   "scripts": {
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2020 browser module main",
-    "migrate": "npx prisma migrate dev",
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
     "docker:up": "docker-compose up -d",
-    "docker:down": "docker-compose down"
+    "docker:down": "docker-compose down",
+    "migrate:dev": "dotenv -e ./apps/api/.env npx prisma migrate dev",
+    "migrate:test": "dotenv -e ./apps/api/.env.test npx prisma migrate dev",
+    "clean:dev": "dotenv -e ./apps/api/.env npx prisma migrate reset",
+    "clean:test": "dotenv -e ./apps/api/.env.test npx prisma migrate reset"
+  },
+  "prisma": {
+    "schema": "apps/api/prisma/schema.prisma"
   },
   "private": true,
   "dependencies": {

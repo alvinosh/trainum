@@ -1,8 +1,8 @@
 version: '3.9'
 services:
-  postgres:
+  postgres-dev:
     image: postgres:latest
-    container_name: postgres
+    container_name: postgres-dev
     expose:
       - 6000
     ports:
@@ -15,6 +15,24 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
     restart: unless-stopped
+  postgres-test:
+    image: postgres:latest
+    build:
+      cache_from:
+        - postgres-dev
+    container_name: postgres-test
+    depends_on:
+      - postgres-dev
+    expose:
+      - 6001
+    ports:
+      - 6001:6001
+    command: -p 6001
+    environment:
+      POSTGRES_USER: trainum_test_user
+      POSTGRES_PASSWORD: trainum
+      POSTGRES_DB: trainum_test_db
+    restart: unless-stopped
   trainum:
     stdin_open: true
     tty: true
@@ -26,14 +44,15 @@ services:
     volumes:
       - ./dist/apps/trainum:/usr/share/nginx/html
       - ./nginx.conf:/etc/nginx/nginx.conf
-  prisma-postgres-api:
+  api:
     stdin_open: true
     volumes:
       - ./dist/apps/api:/app
       - /app/node_modules
       - /app/prisma
     links:
-      - postgres
+      - postgres-dev
+      - postgres-test
     environment:
       DATABASE_URL: postgresql://trainum_user:trainum@postgres:6000/trainum_db?schema=public?connect_timeout=300
       JWT_AT_SECRET: alvialvi
@@ -41,9 +60,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.api
-    container_name: prisma-postgres-api
+    container_name: api
     depends_on:
-      - postgres
+      - postgres-dev
+      - postgres-test
     ports:
       - '3333:3333'
     restart: unless-stopped

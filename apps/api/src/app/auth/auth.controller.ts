@@ -39,13 +39,13 @@ export class AuthController {
 
   @Get('username-exists/:username')
   @Public()
-  async usernameExist(@Param('username') username): Promise<boolean> {
-    return this.authService.usernameExist(username);
+  async usernameExists(@Param('username') username): Promise<boolean> {
+    return this.authService.usernameExists(username);
   }
 
   @Get('email-exists/:email')
   @Public()
-  async emailExist(@Param('email') email): Promise<boolean> {
-    return this.authService.emailExist(email);
+  async emailExists(@Param('email') email): Promise<boolean> {
+    return this.authService.emailExists(email);
   }
 }

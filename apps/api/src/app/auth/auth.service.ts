@@ -20,9 +20,9 @@ export class AuthService {
     if (dto.password != dto.confirm_password)
       throw new BadRequestException('Passwords do not match');
 
-    if (await this.emailExist(dto.email))
+    if (await this.emailExists(dto.email))
       throw new BadRequestException('Email Already Exists');
-    if (await this.usernameExist(dto.username))
+    if (await this.usernameExists(dto.username))
       throw new BadRequestException('Username Already Exists');
 
     const user = await this.prisma.user.create({
@@ -125,7 +125,7 @@ export class AuthService {
     });
   }
 
-  async usernameExist(username: string): Promise<boolean> {
+  async usernameExists(username: string): Promise<boolean> {
     return (await this.prisma.user.findUnique({
       where: { username: username },
     }))
@@ -133,7 +133,7 @@ export class AuthService {
       : false;
   }
 
-  async emailExist(email: string): Promise<boolean> {
+  async emailExists(email: string): Promise<boolean> {
     return (await this.prisma.user.findUnique({
       where: { email: email },
     }))

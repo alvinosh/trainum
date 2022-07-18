@@ -48,9 +48,12 @@ export class AuthService {
   }
 
   public logout(): Observable<User> {
-    this.tokenService.removeAccessToken();
-    this.tokenService.removeRefreshToken();
-    return this.http.post<User>(this.ROUTES.logout(), {});
+    return this.http.post<User>(this.ROUTES.logout(), {}).pipe(
+      tap((respose) => {
+        this.tokenService.removeAccessToken();
+        this.tokenService.removeRefreshToken();
+      })
+    );
   }
 
   public refreshToken(): Observable<Token> {

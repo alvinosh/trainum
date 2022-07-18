@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
   logout() {
     this.authService.logout().subscribe({
       next: () => {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/auth']);
       },
       error: (err) => {
         console.error(err);

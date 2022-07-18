@@ -35,8 +35,8 @@ export class AuthService {
 
   public login(dto: LoginUserDto): Observable<Token> {
     return this.http
-      .post<ApiResponse<Token>>(this.ROUTES.login(), dto)
-      .pipe(pluck('body'));
+      .post<Token>(this.ROUTES.login(), dto)
+      .pipe(tap((response) => this.logUserIn(response)));
   }
 
   public signup(dto: CreateUserDto): Observable<Token> {

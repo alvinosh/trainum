@@ -70,6 +70,9 @@ export class SignupComponent {
       next: (response) => {
         console.log(response);
       },
+      error: (error) => {
+        console.error('ERROR :: ', error);
+      },
     });
   }
 }

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { AuthService } from '../../../auth/services/auth.service';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  constructor(private authService: AuthService, private http: HttpClient) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     return;
@@ -17,7 +18,7 @@ export class DashboardComponent implements OnInit {
   logout() {
     this.authService.logout().subscribe({
       next: () => {
-        console.log('logged out');
+        this.router.navigate(['/login']);
       },
       error: (err) => {
         console.error(err);

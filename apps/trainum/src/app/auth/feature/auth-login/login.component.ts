@@ -5,6 +5,7 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginUserDto } from '@trainum/models/auth';
 import { InputTypes } from '@trainum/types';
 import { AuthService } from '../../services/auth.service';
@@ -32,7 +33,11 @@ export class LoginComponent {
 
   error_message = '';
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   get form() {
     return {
@@ -49,7 +54,7 @@ export class LoginComponent {
 
     this.authService.login(login_dto).subscribe({
       next: (response) => {
-        // console.log(response);
+        this.router.navigate(['/dashboard']);
       },
       error: (error) => {
         this.error_message = error.error.message;

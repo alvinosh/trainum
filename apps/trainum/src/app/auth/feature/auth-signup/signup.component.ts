@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CreateUserDto } from '@trainum/models/auth';
 import { InputTypes } from '@trainum/types';
 import { AuthService } from '../../services/auth.service';
@@ -47,7 +48,11 @@ export class SignupComponent {
     ]),
   });
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   get form() {
     return {
@@ -68,7 +73,7 @@ export class SignupComponent {
 
     this.authService.signup(signup_dto).subscribe({
       next: (response) => {
-        // console.log(response);
+        this.router.navigate(['/dashboard']);
       },
       error: (error) => {
         console.error('ERROR :: ', error);

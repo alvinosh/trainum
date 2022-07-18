@@ -50,7 +50,6 @@ export class AuthService {
   public logout(): Observable<User> {
     this.tokenService.removeAccessToken();
     this.tokenService.removeRefreshToken();
-    this.router.navigate(['/auth']);
     return this.http.post<User>(this.ROUTES.logout(), {});
   }
 

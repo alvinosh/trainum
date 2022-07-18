@@ -8,11 +8,11 @@ import jwt_decode from 'jwt-decode';
   providedIn: 'root',
 })
 export class JwtService {
-  decodeAToken(token: Token): ATPayload {
-    return jwt_decode(token.accessToken);
+  decodeAToken(token: string): ATPayload {
+    return jwt_decode(token);
   }
 
-  decodeRToken(token: Token): RTPayload {
-    return jwt_decode(token.refreshToken);
+  decodeRToken(token: string): RTPayload {
+    return jwt_decode(token);
   }
 }

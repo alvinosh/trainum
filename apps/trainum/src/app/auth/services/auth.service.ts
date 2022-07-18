@@ -8,6 +8,7 @@ import { ApiResponse, Token } from '@trainum/models/types';
 import { Observable, pluck, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { TokenService } from './token.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +29,8 @@ export class AuthService {
   constructor(
     private api: ApiService,
     private tokenService: TokenService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {}
 
   public login(dto: LoginUserDto): Observable<Token> {
@@ -40,7 +42,7 @@ export class AuthService {
   public signup(dto: CreateUserDto): Observable<Token> {
     return this.http
       .post<Token>(this.ROUTES.signup(), dto)
-      .pipe(tap((response) => this.tokenService.saveToken(response)));
+      .pipe(tap((response) => this.logUserIn(response)));
   }
 
   public logout(): Observable<User> {
@@ -53,5 +55,11 @@ export class AuthService {
 
   public emailExists(email: string): Observable<boolean> {
     return this.http.get<boolean>(this.ROUTES.emailExists(email));
+  }
+
+  private logUserIn(token: Token): void {
+    this.tokenService.saveAccessToken(token);
+    this.tokenService.saveRefreshToken(token);
+    this.router.navigate(['/dashboard']);
   }
 }

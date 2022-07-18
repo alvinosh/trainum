@@ -7,31 +7,42 @@ import { JwtService } from '../../shared/services/jwt.service';
   providedIn: 'root',
 })
 export class TokenService {
-  private readonly TOKEN_KEY = 'token';
+  private readonly ACCESS_TOKEN_KEY = 'ACCESS_TOKEN';
+  private readonly REFRESH_TOKEN_KEY = 'REFRESH_TOKEN';
 
   constructor(private jwtService: JwtService) {}
 
-  saveToken(token: Token) {
-    localStorage.setItem(this.TOKEN_KEY, JSON.stringify(token));
+  saveAccessToken(token: Token) {
+    localStorage.setItem(
+      this.ACCESS_TOKEN_KEY,
+      JSON.stringify(token.accessToken)
+    );
   }
 
-  getToken(): Token {
-    const token_string = localStorage.getItem(this.TOKEN_KEY);
+  getAccessToken(): ATPayload {
+    const token_string = localStorage.getItem(this.ACCESS_TOKEN_KEY);
     if (!token_string) throw new Error('No token found');
-    return JSON.parse(token_string);
+    return this.jwtService.decodeAToken(token_string);
   }
 
-  removeToken() {
-    localStorage.removeItem(this.TOKEN_KEY);
+  removeAccessToken() {
+    localStorage.removeItem(this.ACCESS_TOKEN_KEY);
   }
 
-  parseAToken(): ATPayload {
-    const token = this.getToken();
-    return this.jwtService.decodeAToken(token);
+  saveRefreshToken(token: Token) {
+    localStorage.setItem(
+      this.REFRESH_TOKEN_KEY,
+      JSON.stringify(token.refreshToken)
+    );
   }
 
-  parseRToken(): RTPayload {
-    const token = this.getToken();
-    return this.jwtService.decodeRToken(token);
+  getRefreshToken(): RTPayload {
+    const token_string = localStorage.getItem(this.REFRESH_TOKEN_KEY);
+    if (!token_string) throw new Error('No token found');
+    return this.jwtService.decodeRToken(token_string);
+  }
+
+  removeRefreshToken() {
+    localStorage.removeItem(this.REFRESH_TOKEN_KEY);
   }
 }

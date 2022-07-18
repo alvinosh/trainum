@@ -54,7 +54,7 @@ services:
       - postgres-dev
       - postgres-test
     environment:
-      DATABASE_URL: postgresql://trainum_user:trainum@postgres:6000/trainum_db?schema=public?connect_timeout=300
+      DATABASE_URL: postgresql://trainum_user:trainum@postgres-dev:6000/trainum_db?schema=public
       JWT_AT_SECRET: alvialvi
       JWT_RT_SECRET: alvialvi
     build:

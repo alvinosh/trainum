@@ -8,6 +8,7 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
+    "test:api": "dotenv -e ./apps/api/.env.test nx test api",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
     "migrate:dev": "dotenv -e ./apps/api/.env npx prisma migrate dev",

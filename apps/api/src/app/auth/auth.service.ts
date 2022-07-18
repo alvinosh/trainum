@@ -95,6 +95,7 @@ export class AuthService {
         expiresIn: '15min',
       }
     );
+
     const rt_promise = this.jwtService.signAsync(
       {
         sub: id,

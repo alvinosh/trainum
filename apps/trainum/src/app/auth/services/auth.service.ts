@@ -57,6 +57,15 @@ export class AuthService {
     return this.http.get<boolean>(this.ROUTES.emailExists(email));
   }
 
+  public isAuthenticated(): boolean {
+    try {
+      return !!this.tokenService.getAccessToken();
+    } catch (error) {
+      console.error('TOKEN :: ', error);
+      return false;
+    }
+  }
+
   private logUserIn(token: Token): void {
     this.tokenService.saveAccessToken(token);
     this.tokenService.saveRefreshToken(token);

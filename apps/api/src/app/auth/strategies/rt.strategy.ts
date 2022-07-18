@@ -23,6 +23,11 @@ export class RTStrategy extends PassportStrategy(Strategy, 'jwt-refresh') {
       .trim();
 
     if (!refreshToken) throw new ForbiddenException('Refresh token malformed');
-    return { sub: payload.sub, refreshToken: refreshToken };
+    return {
+      sub: payload.sub,
+      refreshToken: refreshToken,
+      exp: payload.exp,
+      iat: payload.iat,
+    };
   }
 }

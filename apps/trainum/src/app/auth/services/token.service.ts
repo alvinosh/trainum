@@ -22,7 +22,11 @@ export class TokenService {
   getAccessToken(): ATPayload {
     const token_string = localStorage.getItem(this.ACCESS_TOKEN_KEY);
     if (!token_string) throw new Error('No token found');
-    return this.jwtService.decodeAToken(token_string);
+    const payload = this.jwtService.decodeAToken(token_string);
+    if (this.jwtService.isAuthTokenExpired(payload)) {
+      throw new Error('Access Token expired');
+    }
+    return payload;
   }
 
   removeAccessToken() {
@@ -39,7 +43,11 @@ export class TokenService {
   getRefreshToken(): RTPayload {
     const token_string = localStorage.getItem(this.REFRESH_TOKEN_KEY);
     if (!token_string) throw new Error('No token found');
-    return this.jwtService.decodeRToken(token_string);
+    const payload = this.jwtService.decodeRToken(token_string);
+    if (this.jwtService.isRefTokenExpired(payload)) {
+      throw new Error('Refresh Token expired');
+    }
+    return payload;
   }
 
   removeRefreshToken() {

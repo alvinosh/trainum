@@ -15,4 +15,14 @@ export class JwtService {
   decodeRToken(token: string): RTPayload {
     return jwt_decode(token);
   }
+
+  isAuthTokenExpired(payload: ATPayload): boolean {
+    const now = Date.now().valueOf() / 1000;
+    return payload.exp < now;
+  }
+
+  isRefTokenExpired(payload: RTPayload): boolean {
+    const now = Date.now().valueOf() / 1000;
+    return payload.exp < now;
+  }
 }

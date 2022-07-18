@@ -14,6 +14,6 @@ export class ATStrategy extends PassportStrategy(Strategy, 'jwt') {
   }
 
   validate(payload: ATPayload): ATPayload {
-    return { sub: payload.sub };
+    return { sub: payload.sub, exp: payload.exp, iat: payload.iat };
   }
 }

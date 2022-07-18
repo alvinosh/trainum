@@ -11,7 +11,6 @@ import { Constants } from '../constants/constants';
 export class ApiService {
   constructor(
     // Angular Modules
-    private http: HttpClient,
     private constants: Constants
   ) {}
 

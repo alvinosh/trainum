@@ -68,7 +68,7 @@ export class SignupComponent {
 
     this.authService.signup(signup_dto).subscribe({
       next: (response) => {
-        console.log(response);
+        // console.log(response);
       },
       error: (error) => {
         console.error('ERROR :: ', error);

@@ -19,14 +19,14 @@ export class TokenService {
     );
   }
 
-  getAccessToken(): ATPayload {
+  getAccessToken(): string {
     const token_string = localStorage.getItem(this.ACCESS_TOKEN_KEY);
     if (!token_string) throw new Error('No token found');
-    const payload = this.jwtService.decodeAToken(token_string);
-    if (this.jwtService.isAuthTokenExpired(payload)) {
-      throw new Error('Access Token expired');
-    }
-    return payload;
+    return JSON.parse(token_string);
+  }
+
+  decodeAccessToken(token: string): ATPayload {
+    return this.jwtService.decodeAToken(token);
   }
 
   removeAccessToken() {
@@ -40,14 +40,14 @@ export class TokenService {
     );
   }
 
-  getRefreshToken(): RTPayload {
+  getRefreshToken(): string {
     const token_string = localStorage.getItem(this.REFRESH_TOKEN_KEY);
     if (!token_string) throw new Error('No token found');
-    const payload = this.jwtService.decodeRToken(token_string);
-    if (this.jwtService.isRefTokenExpired(payload)) {
-      throw new Error('Refresh Token expired');
-    }
-    return payload;
+    return JSON.parse(token_string);
+  }
+
+  decodeRefreshToken(token: string): RTPayload {
+    return this.jwtService.decodeRToken(token);
   }
 
   removeRefreshToken() {

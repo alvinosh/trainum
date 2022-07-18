@@ -25,7 +25,6 @@ export class AuthController {
   }
 
   @Post('logout')
-  @UseGuards(ATGuard)
   async logout(@UserId() id: number): Promise<User> {
     return this.authService.logout(id);
   }

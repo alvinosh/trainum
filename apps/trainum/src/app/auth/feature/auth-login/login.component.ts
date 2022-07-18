@@ -49,7 +49,7 @@ export class LoginComponent {
 
     this.authService.login(login_dto).subscribe({
       next: (response) => {
-        console.log(response);
+        // console.log(response);
       },
       error: (error) => {
         this.error_message = error.error.message;

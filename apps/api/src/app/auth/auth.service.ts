@@ -92,7 +92,7 @@ export class AuthService {
       },
       {
         secret: this.configService.get<string>('JWT_AT_SECRET'),
-        expiresIn: '15min',
+        expiresIn: '5s',
       }
     );
 

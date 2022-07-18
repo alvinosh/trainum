@@ -17,6 +17,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('../auth-signup/signup.module').then((m) => m.SignupModule),
       },
+      {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full',
+      },
     ],
   },
 ];

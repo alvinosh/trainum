@@ -7,7 +7,8 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GlobalErrorHandler } from './shared/classes/global-error-handler';
-import { ServerErrorInterceptor } from './shared/classes/server-error-interceptor';
+import { ServerErrorInterceptor } from './shared/interceptors/server-error-interceptor';
+import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { ServerErrorInterceptor } from './shared/classes/server-error-intercepto
   ],
   providers: [
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ServerErrorInterceptor,

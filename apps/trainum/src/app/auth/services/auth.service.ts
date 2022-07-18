@@ -18,6 +18,8 @@ export class AuthService {
     login: () => this.api.createUrl('auth/local/login'),
     signup: () => this.api.createUrl('auth/local/signup'),
     logout: () => this.api.createUrl('auth/logout'),
+    refresh: () => this.api.createUrl('auth/refresh'),
+    test: () => this.api.createUrl('auth/test'),
 
     usernameExists: (username: string) =>
       this.api.createUrlWithPathVariables('auth/username-exists', [username]),
@@ -46,7 +48,14 @@ export class AuthService {
   }
 
   public logout(): Observable<User> {
+    this.tokenService.removeAccessToken();
+    this.tokenService.removeRefreshToken();
+    this.router.navigate(['/auth']);
     return this.http.post<User>(this.ROUTES.logout(), {});
+  }
+
+  public refreshToken(): Observable<Token> {
+    return this.http.post<Token>(this.ROUTES.refresh(), {});
   }
 
   public usernameExists(username: string): Observable<boolean> {
@@ -57,18 +66,21 @@ export class AuthService {
     return this.http.get<boolean>(this.ROUTES.emailExists(email));
   }
 
+  public test(): Observable<any> {
+    return this.http.get<any>(this.ROUTES.test());
+  }
+
   public isAuthenticated(): boolean {
     try {
       return !!this.tokenService.getAccessToken();
     } catch (error) {
-      console.error('TOKEN :: ', error);
+      // console.error('TOKEN :: ', error);
       return false;
     }
   }
 
-  private logUserIn(token: Token): void {
+  public logUserIn(token: Token): void {
     this.tokenService.saveAccessToken(token);
     this.tokenService.saveRefreshToken(token);
-    this.router.navigate(['/dashboard']);
   }
 }

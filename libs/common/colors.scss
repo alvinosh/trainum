@@ -54,12 +54,20 @@ $ui-colors: (
     background: get(grey, 700),
     text: get(grey, 200),
   ),
+  topbar: (
+    background: get(grey, 700),
+    text: get(grey, 100),
+  ),
+  expand-menu: (
+    background: get(grey, 100),
+    border: get(grey, 300),
+    text: get(grey, 100),
+  ),
   navbar: (
     border: get(grey, 200),
     unactive: get(grey, 600),
     active: get(grey, 100),
     selector: get(grey, 600),
     background: get(grey, 100),
-    text: get(grey, 200),
   ),
 );

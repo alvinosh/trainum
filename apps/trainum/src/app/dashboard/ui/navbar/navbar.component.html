@@ -3,7 +3,7 @@
     <li
       *ngFor="let nav_item of nav_items"
       [class.active]="nav_item.name === active_nav_item?.name"
-      (click)="setActiveNavItem(nav_item)"
+      (click)="navClick(nav_item)"
       class="list-item"
     >
       <fa-icon [icon]="nav_item.icon"></fa-icon>

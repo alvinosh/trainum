@@ -56,7 +56,7 @@ li.active {
     top: 0;
     left: 0;
     transform: translate(0, -50%);
-    height: $selector-size / 2;
+    height: calc(#{$selector-size} / 2);
     width: $selector-size;
     background-color: colors.ui-get(navbar, selector);
     border-radius: 50%;

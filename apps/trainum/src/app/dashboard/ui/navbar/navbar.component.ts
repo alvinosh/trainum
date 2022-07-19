@@ -1,8 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
-  OnChanges,
+  Output,
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavItem } from '@trainum/types';
@@ -12,20 +13,12 @@ import { NavItem } from '@trainum/types';
   styleUrls: ['./navbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavbarComponent implements OnChanges {
-  constructor(private router: Router) {}
-
+export class NavbarComponent {
   @Input() nav_items: NavItem[] = [];
-  @Input() active_nav_index = 2;
+  @Input() active_nav_item: NavItem | undefined;
+  @Output() nav_item_click = new EventEmitter<NavItem>();
 
-  active_nav_item: NavItem | undefined = undefined;
-
-  ngOnChanges(): void {
-    this.active_nav_item = this.nav_items[this.active_nav_index];
-  }
-
-  setActiveNavItem(nav_item: NavItem) {
-    this.active_nav_item = nav_item;
-    this.router.navigate(['dashboard', nav_item.url]);
+  navClick(nav_item: NavItem) {
+    this.nav_item_click.emit(nav_item);
   }
 }

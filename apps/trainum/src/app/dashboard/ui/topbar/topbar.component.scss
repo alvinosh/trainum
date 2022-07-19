@@ -1,0 +1,14 @@
+@use 'colors.scss' as colors;
+
+.container {
+  height: 8vh;
+  background-color: colors.ui-get(topbar, background);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.6rem;
+  padding: 0 1rem;
+  font-family: 'Roboto', sans-serif;
+  color: colors.ui-get(topbar, text);
+}

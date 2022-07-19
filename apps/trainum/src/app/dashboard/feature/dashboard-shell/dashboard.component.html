@@ -1,9 +1,29 @@
 <div class="container">
-  <div class="top"></div>
+  <div class="top">
+    <trainum-topbar
+      [title]="active_nav_item.name"
+      (topbarEvent)="onTopbarEvent($event)"
+    ></trainum-topbar>
+  </div>
   <div class="content">
+    <trainum-expand-menu
+      [expanded]="profile_expanded"
+      [type]="ExpandMenuType.Right"
+    >
+      <trainum-button (click)="logout()">Log Out</trainum-button>
+    </trainum-expand-menu>
+    <trainum-expand-menu
+      [expanded]="settings_expanded"
+      [type]="ExpandMenuType.Left"
+    >
+    </trainum-expand-menu>
     <router-outlet> </router-outlet>
   </div>
   <div class="bottom">
-    <trainum-navbar [nav_items]="nav_items"></trainum-navbar>
+    <trainum-navbar
+      [nav_items]="nav_items"
+      [active_nav_item]="active_nav_item"
+      (nav_item_click)="onNanvItemClick($event)"
+    ></trainum-navbar>
   </div>
 </div>

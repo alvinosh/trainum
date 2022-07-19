@@ -1,0 +1,9 @@
+<div
+  class="container active"
+  [class.left]="ExpandMenuType.Left === type"
+  [class.right]="ExpandMenuType.Right === type"
+  [class.expanded]="expanded"
+  [class.not_expanded]="!expanded"
+>
+  <ng-content></ng-content>
+</div>

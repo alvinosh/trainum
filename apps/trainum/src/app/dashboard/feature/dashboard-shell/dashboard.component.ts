@@ -73,6 +73,11 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  removeFocus() {
+    this.profile_expanded = false;
+    this.settings_expanded = false;
+  }
+
   logout() {
     this.authService.logout().subscribe({
       next: () => {

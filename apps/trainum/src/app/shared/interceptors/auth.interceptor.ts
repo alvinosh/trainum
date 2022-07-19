@@ -51,6 +51,7 @@ export class AuthInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return this.authService.refreshToken().pipe(
       switchMap((token) => {
+        this.authService.logUserIn(token);
         return next.handle(
           this.addHeader(req, 'Authorization', `Bearer ${token.accessToken}`)
         );

@@ -5,14 +5,16 @@
       (topbarEvent)="onTopbarEvent($event)"
     ></trainum-topbar>
   </div>
-  <div class="content">
+  <div class="content" (click)="removeFocus()">
     <trainum-expand-menu
+      (click)="$event.stopPropagation()"
       [expanded]="profile_expanded"
       [type]="ExpandMenuType.Right"
     >
       <trainum-button (click)="logout()">Log Out</trainum-button>
     </trainum-expand-menu>
     <trainum-expand-menu
+      (click)="$event.stopPropagation()"
       [expanded]="settings_expanded"
       [type]="ExpandMenuType.Left"
     >

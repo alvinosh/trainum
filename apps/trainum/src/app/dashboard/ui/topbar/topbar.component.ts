@@ -3,7 +3,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
 } from '@angular/core';
 import { faCog, faUserAlt } from '@fortawesome/free-solid-svg-icons';

@@ -5,7 +5,7 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable } from 'rxjs';
+import { catchError, Observable, switchMap } from 'rxjs';
 import { AuthService } from '../../auth/services/auth.service';
 import { TokenService } from '../../auth/services/token.service';
 
@@ -15,8 +15,6 @@ export class AuthInterceptor implements HttpInterceptor {
     private authService: AuthService,
     private tokenService: TokenService
   ) {}
-
-  refreshing = false;
 
   intercept(
     req: HttpRequest<any>,
@@ -36,7 +34,7 @@ export class AuthInterceptor implements HttpInterceptor {
       return next.handle(auth_with_token).pipe(
         catchError((error) => {
           if (error.status === 401) {
-            this.handle401Error(req, next);
+            return this.handle401Error(req, next);
           }
           throw error;
         })
@@ -47,19 +45,17 @@ export class AuthInterceptor implements HttpInterceptor {
     }
   }
 
-  private handle401Error(req: HttpRequest<any>, next: HttpHandler): void {
-    if (this.refreshing) return;
-    this.refreshing = true;
-    this.authService.refreshToken().subscribe({
-      next: (response) => {
-        this.refreshing = false;
-        this.authService.logUserIn(response);
-      },
-      error: (error) => {
-        this.authService.logout();
-        throw error;
-      },
-    });
+  private handle401Error(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    return this.authService.refreshToken().pipe(
+      switchMap((token) => {
+        return next.handle(
+          this.addHeader(req, 'Authorization', `Bearer ${token.accessToken}`)
+        );
+      })
+    );
   }
 
   private addHeader(req: HttpRequest<any>, header: string, value: string) {

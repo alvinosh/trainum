@@ -1,6 +1,72 @@
+@use 'colors.scss' as colors;
+
+$width: 60px;
+$selector-size: 8vh;
+$transition-speed: 200ms;
+
 .container {
   height: 8vh;
   width: 100%;
 
-  border-top: 1px solid;
+  background-color: colors.ui-get(navbar, background);
+  border-top: 1px solid colors.ui-get(navbar, border);
+
+  display: flex;
+  justify-content: center;
+}
+
+ul {
+  flex-shrink: 1;
+  height: 100%;
+
+  list-style-type: none;
+  position: relative;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+li {
+  width: $width;
+  font-size: 1.8rem;
+  color: colors.ui-get(navbar, unactive);
+  text-align: center;
+  z-index: 2;
+  transition: all $transition-speed ease-in-out;
+}
+
+li.active {
+  color: colors.ui-get(navbar, active);
+  transform: scale(1.2);
+}
+
+.selector {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  .square {
+    width: $selector-size;
+    height: $selector-size;
+    background-color: colors.ui-get(navbar, selector);
+  }
+  .ellipse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(0, -50%);
+    height: $selector-size / 2;
+    width: $selector-size;
+    background-color: colors.ui-get(navbar, selector);
+    border-radius: 50%;
+  }
+  transition: all $transition-speed ease-in-out;
+}
+
+$elements: 5;
+@for $i from 0 to $elements {
+  ul li:nth-child(#{$i + 1}).active ~ .selector {
+    left: calc(#{$i * $width} + calc(calc(#{$width} - #{$selector-size}) / 2));
+  }
 }

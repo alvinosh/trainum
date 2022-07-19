@@ -54,4 +54,12 @@ $ui-colors: (
     background: get(grey, 700),
     text: get(grey, 200),
   ),
+  navbar: (
+    border: get(grey, 200),
+    unactive: get(grey, 600),
+    active: get(grey, 100),
+    selector: get(grey, 600),
+    background: get(grey, 100),
+    text: get(grey, 200),
+  ),
 );

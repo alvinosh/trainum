@@ -15,11 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@api/auth/*": ["apps/api/src/app/auth/*"],
       "@trainum/models/*": ["libs/models/src/lib/*"],
       "@trainum/types": ["libs/ui/src/lib/types/index.ts"],
-      "@trainum/ui": ["libs/ui/src/index.ts"],
-
-      "@api/auth/*": ["apps/api/src/app/auth/*"]
+      "@trainum/ui": ["libs/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

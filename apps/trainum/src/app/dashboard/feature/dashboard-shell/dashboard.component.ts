@@ -6,7 +6,7 @@ import { AuthService } from '../../../auth/services/auth.service';
 @Component({
   selector: 'trainum-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}

@@ -1,0 +1,37 @@
+.container {
+  width: 100vw;
+  min-height: 100vh;
+  max-height: 100vh;
+
+  display: flex;
+  flex-flow: column nowrap;
+
+  /* temp */
+  /* background-color: grey; */
+}
+
+.top {
+  max-width: 100%;
+
+  /* temp */
+  min-height: 50px;
+  /* background-color: red; */
+}
+
+.content {
+  max-width: 100%;
+  flex-grow: 1;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  /* temp */
+  /* background-color: blue; */
+}
+
+.bottom {
+  max-width: 100%;
+
+  /* temp */
+  /* min-height: 50px;
+  background-color: red; */
+}

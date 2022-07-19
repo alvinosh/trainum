@@ -10,7 +10,6 @@ import { InputTypes } from '../types';
   selector: 'trainum-text-input',
   templateUrl: './text-input.component.html',
   styleUrls: ['./text-input.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextInputComponent implements ControlValueAccessor {
   @Input() label = ' Text Input ';
@@ -20,14 +19,12 @@ export class TextInputComponent implements ControlValueAccessor {
   input_value = '';
   disabled = false;
 
-  errors: ValidationErrors | null | undefined;
-
   constructor(@Self() public ngControl: NgControl) {
     this.ngControl.valueAccessor = this;
   }
 
-  onBlur(): void {
-    this.errors = this.ngControl.control?.errors;
+  get errors() {
+    return this.ngControl.control?.errors;
   }
 
   onChange: (value: string) => void = () => {

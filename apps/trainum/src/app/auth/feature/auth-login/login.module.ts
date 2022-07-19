@@ -4,7 +4,12 @@ import { CommonModule } from '@angular/common';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
 
-import { ButtonModule, HyperlinkModule, TextInputModule } from '@trainum/ui';
+import {
+  ButtonModule,
+  HyperlinkModule,
+  TextInputModule,
+  ErrorMsgModule,
+} from '@trainum/ui';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -18,6 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TextInputModule,
     ButtonModule,
     HyperlinkModule,
+    ErrorMsgModule,
   ],
 })
 export class LoginModule {}

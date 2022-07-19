@@ -58,6 +58,9 @@ export class LoginComponent {
       },
       error: (error) => {
         this.error_message = error.error.message;
+        this.form.username.setErrors({ empty: true });
+        this.form.password.setErrors({ empty: true });
+
         console.error('ERROR :: ', error);
       },
     });

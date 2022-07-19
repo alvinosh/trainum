@@ -36,8 +36,8 @@ export class DashboardComponent implements OnInit {
     },
     {
       icon: faDumbbell,
-      name: 'Workout',
-      url: 'workout',
+      name: 'Workouts',
+      url: 'workouts',
     },
     {
       icon: faRunning,

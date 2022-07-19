@@ -8,6 +8,9 @@
     [type]="InputType.Password"
     formControlName="password"
   ></trainum-text-input>
+  <trainum-error-msg>
+    {{ error_message }}
+  </trainum-error-msg>
   <trainum-hyperlink
     [routerLink]="['auth', 'signup']"
     text="Forgot Password..."

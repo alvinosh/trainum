@@ -2,9 +2,8 @@
   <label [class.disabled]="disabled" for="text">{{ label }}</label>
   <input
     [disabled]="disabled"
-    [ngModel]="input_value"
-    (blur)="onBlur()"
-    (ngModelChange)="onChange($event)"
+    [(ngModel)]="value"
+    (blur)="onTouch()"
     [type]="type"
     name="text"
     id="text"

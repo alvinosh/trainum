@@ -50,6 +50,9 @@ $ui-colors: (
     text: get(grey, 600),
     error: get(red, 400),
   ),
+  error-msg: (
+    text: get(red, 400),
+  ),
   button: (
     background: get(grey, 700),
     text: get(grey, 200),

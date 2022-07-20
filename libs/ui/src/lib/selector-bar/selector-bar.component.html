@@ -1,11 +1,23 @@
 <div class="container">
-  <button class="add grower">
+  <button
+    [class.active]="searchActive"
+    class="add"
+    (click)="setSearchActive(false)"
+  >
     <fa-icon [icon]="addIcon"></fa-icon>
   </button>
-  <button class="search">
-    <fa-icon [icon]="searchIcon"></fa-icon>
+  <button
+    [class.active]="searchActive"
+    class="search"
+    (click)="setSearchActive(true)"
+  >
+    <fa-icon
+      [icon]="searchIcon"
+      (click)="setSearchActive(!searchActive, $event)"
+    ></fa-icon>
+    <input trainumTxtInput type="text" *ngIf="searchActive" />
   </button>
-  <button class="filter">
+  <button class="filter" (click)="setSearchActive(false)">
     <fa-icon [icon]="filterIcon"></fa-icon>
   </button>
 </div>

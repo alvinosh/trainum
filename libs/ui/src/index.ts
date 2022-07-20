@@ -5,3 +5,5 @@ export * from './lib/error-msg/error-msg.module';
 export * from './lib/hyperlink/hyperlink.module';
 export * from './lib/validation-pipe/validation-pipe.module';
 export * from './lib/selector-bar/selector-bar.module';
+export * from './lib/expand-menu/expand-menu.module';
+export * from './lib/t-input/text-input-directive.module';

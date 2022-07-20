@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { faFilter, faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -12,4 +11,10 @@ export class SelectorBarComponent {
   addIcon = faPlus;
   searchIcon = faSearch;
   filterIcon = faFilter;
+
+  searchActive = false;
+  setSearchActive(active: boolean, $event: any = null) {
+    if (event) event.stopPropagation();
+    this.searchActive = active;
+  }
 }

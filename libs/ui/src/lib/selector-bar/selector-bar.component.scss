@@ -1,5 +1,7 @@
 @use 'colors.scss' as c;
 
+$transition-speed: 0.2s;
+
 .container {
   width: 100%;
 
@@ -9,6 +11,7 @@
   align-items: center;
 
   border-bottom: 1px solid c.get(grey, 200);
+  padding-bottom: 0.5rem;
 }
 
 button {
@@ -37,8 +40,29 @@ fa-icon {
   font-size: 1.6rem;
   font-weight: 900;
   color: c.ui-get(dark-text);
+  transition: all $transition-speed ease-in-out;
 }
 
-.grower {
-  margin-right: auto;
+.add {
+  flex-grow: 1;
+  flex-basis: 6vw;
+}
+
+.search {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  flex-basis: 6vw;
+}
+.search.active {
+  flex-grow: 1;
+}
+
+.add.active {
+  flex-grow: 0;
+}
+
+input {
+  width: 100%;
+  margin: 0 1rem;
 }

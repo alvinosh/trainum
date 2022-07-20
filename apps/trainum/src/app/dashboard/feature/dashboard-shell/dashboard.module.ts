@@ -5,8 +5,8 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { NavbarModule } from '../../ui/navbar/navbar.module';
 import { TopbarModule } from '../../ui/topbar/topbar.module';
-import { ExpandMenuModule } from '../../ui/expand-menu/expand-menu.module';
-import { ButtonModule } from '@trainum/ui';
+
+import { ButtonModule, ExpandMenuModule } from '@trainum/ui';
 
 @NgModule({
   declarations: [DashboardComponent],

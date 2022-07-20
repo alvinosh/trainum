@@ -1,0 +1,44 @@
+@use 'colors.scss' as c;
+
+.container {
+  width: 100%;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: center;
+
+  border-bottom: 1px solid c.get(grey, 200);
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+button:active {
+  transform: scale(0.98);
+  transition: transform 0s;
+}
+
+fa-icon {
+  width: 6vh;
+  height: 6vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add,
+.filter,
+.search {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: c.ui-get(dark-text);
+}
+
+.grower {
+  margin-right: auto;
+}

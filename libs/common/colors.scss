@@ -41,6 +41,7 @@ $colors: (
 );
 
 $ui-colors: (
+  dark-text: get(grey, 600),
   logo: get(grey, 600),
   footer: get(grey, 700),
   input: (

@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { faFilter, faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'trainum-selector-bar',
@@ -6,4 +8,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   styleUrls: ['./selector-bar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SelectorBarComponent {}
+export class SelectorBarComponent {
+  addIcon = faPlus;
+  searchIcon = faSearch;
+  filterIcon = faFilter;
+}

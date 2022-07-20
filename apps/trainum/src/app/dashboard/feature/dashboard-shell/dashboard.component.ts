@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit {
       url: 'exercises',
     },
   ];
-  active_nav_item: NavItem = this.nav_items[2];
+  active_nav_item: NavItem = this.nav_items[4];
 
   profile_expanded = false;
   settings_expanded = false;

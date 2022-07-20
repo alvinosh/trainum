@@ -25,6 +25,7 @@ const routes: Routes = [
     redirectTo: 'dashboard',
     pathMatch: 'full',
   },
+  { path: 'exercises', loadChildren: () => import('./dashboard/feature/exercises/exercises.module').then(m => m.ExercisesModule) },
 ];
 
 @NgModule({

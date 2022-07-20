@@ -1,9 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input, Self } from '@angular/core';
-import {
-  ControlValueAccessor,
-  NgControl,
-  ValidationErrors,
-} from '@angular/forms';
+import { Component, Input, Self } from '@angular/core';
+import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { InputTypes } from '../types';
 
 @Component({
@@ -24,6 +20,7 @@ export class TextInputComponent implements ControlValueAccessor {
   }
 
   get errors() {
+    if (!this.ngControl.touched) return;
     return this.ngControl.control?.errors;
   }
 

@@ -1,10 +1,12 @@
 <form class="form" [formGroup]="loginForm" (submit)="submitForm()">
   <trainum-text-input
     label="Username"
+    id="username"
     formControlName="username"
   ></trainum-text-input>
   <trainum-text-input
     label="Password"
+    id="password"
     [type]="InputType.Password"
     formControlName="password"
   ></trainum-text-input>

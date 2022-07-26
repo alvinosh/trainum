@@ -7,14 +7,14 @@
   </div>
   <div class="content" (click)="removeFocus()">
     <trainum-expand-menu
-      (click)="$event.stopPropagation()"
+      trainumStopPropagation
       [expanded]="profile_expanded"
       [type]="ExpandMenuType.Right"
     >
       <trainum-button (click)="logout()">Log Out</trainum-button>
     </trainum-expand-menu>
     <trainum-expand-menu
-      (click)="$event.stopPropagation()"
+      trainumStopPropagation
       [expanded]="settings_expanded"
       [type]="ExpandMenuType.Left"
     >

@@ -7,3 +7,5 @@ export * from './lib/validation-pipe/validation-pipe.module';
 export * from './lib/selector-bar/selector-bar.module';
 export * from './lib/expand-menu/expand-menu.module';
 export * from './lib/t-input/text-input-directive.module';
+export * from './lib/stop-propagation/stop-propagation.module';
+export * from './lib/blob/blob.module';

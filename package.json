@@ -14,7 +14,9 @@
     "migrate:dev": "dotenv -e ./apps/api/.env npx prisma migrate dev",
     "migrate:test": "dotenv -e ./apps/api/.env.test npx prisma migrate dev",
     "clean:dev": "dotenv -e ./apps/api/.env npx prisma migrate reset",
-    "clean:test": "dotenv -e ./apps/api/.env.test npx prisma migrate reset"
+    "clean:test": "dotenv -e ./apps/api/.env.test npx prisma migrate reset",
+    "api": "nx build api --watch",
+    "trainum": "nx serve trainum"
   },
   "prisma": {
     "schema": "apps/api/prisma/schema.prisma"
@@ -40,7 +42,7 @@
     "@nestjs/jwt": "^8.0.1",
     "@nestjs/passport": "^9.0.0",
     "@nestjs/platform-express": "^8.0.0",
-    "@nrwl/angular": "14.4.2",
+    "@nrwl/angular": "14.4.3",
     "@prisma/client": "^4.0.0",
     "argon2": "^0.28.7",
     "class-transformer": "^0.5.1",
@@ -63,15 +65,15 @@
     "@angular/language-service": "~14.0.0",
     "@nestjs/schematics": "^8.0.0",
     "@nestjs/testing": "^8.0.0",
-    "@nrwl/cli": "14.4.2",
-    "@nrwl/cypress": "14.4.2",
-    "@nrwl/eslint-plugin-nx": "14.4.2",
-    "@nrwl/jest": "14.4.2",
-    "@nrwl/linter": "14.4.2",
-    "@nrwl/nest": "14.4.2",
-    "@nrwl/node": "14.4.2",
-    "@nrwl/nx-cloud": "latest",
-    "@nrwl/workspace": "14.4.2",
+    "@nrwl/cli": "14.4.3",
+    "@nrwl/cypress": "14.4.3",
+    "@nrwl/eslint-plugin-nx": "14.4.3",
+    "@nrwl/jest": "14.4.3",
+    "@nrwl/linter": "14.4.3",
+    "@nrwl/nest": "14.4.3",
+    "@nrwl/node": "14.4.3",
+    "@nrwl/nx-cloud": "14.2.0",
+    "@nrwl/workspace": "14.4.3",
     "@types/argon2": "^0.15.0",
     "@types/jest": "27.4.1",
     "@types/node": "16.11.7",
@@ -85,7 +87,7 @@
     "jest": "27.5.1",
     "jest-mock-extended": "^2.0.4",
     "jest-preset-angular": "~11.1.2",
-    "nx": "14.4.2",
+    "nx": "14.4.3",
     "prettier": "^2.6.2",
     "prisma": "^4.0.0",
     "ts-jest": "27.1.4",
@@ -93,3 +95,4 @@
     "typescript": "~4.7.2"
   }
 }
+

@@ -51,6 +51,20 @@ $ui-colors: (
     text: get(grey, 600),
     error: get(red, 400),
   ),
+  blob: (
+    background: get(grey, 100),
+    text: get(grey, 400),
+    active-background: get(grey, 600),
+    active-text: get(grey, 100),
+  ),
+  query: (
+    background: get(grey, 100),
+    text: get(grey, 400),
+  ),
+  filters: (
+    background: get(grey, 200),
+    text: get(grey, 400),
+  ),
   error-msg: (
     text: get(red, 400),
   ),

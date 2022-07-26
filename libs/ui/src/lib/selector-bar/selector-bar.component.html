@@ -9,15 +9,52 @@
   <button
     [class.active]="searchActive"
     class="search"
-    (click)="setSearchActive(true)"
+    (click)="onClick('search')"
   >
     <fa-icon
+      trainumStopPropagation
       [icon]="searchIcon"
-      (click)="setSearchActive(!searchActive, $event)"
+      (click)="onClick('search-icon')"
     ></fa-icon>
-    <input trainumTxtInput type="text" *ngIf="searchActive" />
+    <input
+      [formControl]="searchValue"
+      trainumTxtInput
+      type="text"
+      (change)="searchChange()"
+    />
   </button>
-  <button class="filter" (click)="setSearchActive(false)">
+  <button class="filter" (click)="onClick('filter')">
     <fa-icon [icon]="filterIcon"></fa-icon>
   </button>
+</div>
+<div *ngIf="filterActive" class="filters">
+  <p>Filters</p>
+  <div class="selection">
+    <trainum-blob
+      *ngFor="let filter of filters"
+      [label]="filter.label"
+      [type]="BlobType.Toggle"
+      [active]="filter.active"
+      (click)="setFilter(filter, !filter.active)"
+    ></trainum-blob>
+  </div>
+</div>
+<div *ngIf="!filterActive" class="query">
+  <trainum-blob
+    *ngIf="searchValue.value"
+    [label]="searchValue.value"
+    [type]="BlobType.Select"
+    [active]="true"
+    (click)="resetSearch()"
+  >
+  </trainum-blob>
+
+  <trainum-blob
+    *ngFor="let filter of filters | active"
+    [label]="filter.label"
+    [type]="BlobType.Select"
+    [active]="true"
+    (click)="setFilter(filter, false)"
+  >
+  </trainum-blob>
 </div>

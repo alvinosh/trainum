@@ -6,7 +6,11 @@ import { DashboardComponent } from './dashboard.component';
 import { NavbarModule } from '../../ui/navbar/navbar.module';
 import { TopbarModule } from '../../ui/topbar/topbar.module';
 
-import { ButtonModule, ExpandMenuModule } from '@trainum/ui';
+import {
+  ButtonModule,
+  ExpandMenuModule,
+  StopPropagationModule,
+} from '@trainum/ui';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -17,6 +21,7 @@ import { ButtonModule, ExpandMenuModule } from '@trainum/ui';
     TopbarModule,
     ExpandMenuModule,
     ButtonModule,
+    StopPropagationModule,
   ],
 })
 export class DashboardModule {}

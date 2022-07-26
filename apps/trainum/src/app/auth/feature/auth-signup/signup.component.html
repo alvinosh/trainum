@@ -1,21 +1,25 @@
 <form class="form" [formGroup]="signupForm" (submit)="submitForm()">
   <trainum-text-input
     label="Username"
+    id="username"
     formControlName="username"
   ></trainum-text-input>
   <trainum-text-input
     [type]="InputType.Email"
     label="Email"
+    id="email"
     formControlName="email"
   ></trainum-text-input>
   <trainum-text-input
     [type]="InputType.Password"
     label="Password"
+    id="password"
     formControlName="password"
   ></trainum-text-input>
   <trainum-text-input
     [type]="InputType.Password"
     label="Confrim Password"
+    id="confirm_password"
     formControlName="confirm_password"
   ></trainum-text-input>
   <trainum-button>Sign Up</trainum-button>

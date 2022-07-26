@@ -23,5 +23,67 @@ model User {
   hash      String
   hashedRt  String?
 
+  exercises Exercise[]
+
   @@map("users")
+}
+
+model Exercise {
+  id        Int     @default(autoincrement()) @id
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String
+  description String?
+  images      Image[]
+  targets     ExerciseTarget[]
+  type        String
+
+  userId      Int
+  user        User  @relation(fields: [userId], references: [id])
+
+
+  @@map("exercises")
+}
+
+
+model Target {
+  id        Int     @default(autoincrement()) @id
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String
+
+  exercises ExerciseTarget[]
+
+  @@map("targets")
+}
+
+model ExerciseTarget {
+  id        Int     @default(autoincrement()) @id
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  exerciseId  Int
+  exercise    Exercise @relation(fields: [exerciseId], references: [id])
+  targetId    Int
+  target      Target @relation(fields: [targetId], references: [id])
+
+  @@map("exercise_targets")
+}
+
+model Image {
+  id        Int     @default(autoincrement()) @id
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  url        String
+  exercise   Exercise  @relation(fields: [exerciseId], references: [id])
+  exerciseId Int
+
+  @@map("images")
 }

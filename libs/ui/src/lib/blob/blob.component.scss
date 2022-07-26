@@ -18,12 +18,13 @@ $transition-speed: 100ms;
   gap: 0.5rem;
   cursor: pointer;
   transition: all $transition-speed ease-in-out;
-  border: 2px solid transparent;
+  border: 1px solid c.ui-get(blob, active-border);
 }
 
 .blob.active {
   box-sizing: border-box;
   background-color: c.ui-get(blob, active-background);
+  border: 1px solid c.ui-get(blob, border);
 }
 
 .blob.active p {

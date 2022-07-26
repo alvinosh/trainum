@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
+  Input,
   Output,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -20,28 +21,7 @@ export class SelectorBarComponent {
 
   @Output() selectEvent = new EventEmitter<SelectEvent>();
 
-  filters: Filter[] = [
-    {
-      label: 'Test',
-      value: 'test',
-      active: false,
-    },
-    {
-      label: 'Test2',
-      value: 'test2',
-      active: false,
-    },
-    {
-      label: 'Test3',
-      value: 'test3',
-      active: false,
-    },
-    {
-      label: 'Test4',
-      value: 'test4',
-      active: false,
-    },
-  ];
+  @Input() filters: Filter[] = [];
 
   BlobType = BlobType;
   ExpandMenuType = ExpandMenuType;
@@ -54,10 +34,14 @@ export class SelectorBarComponent {
   filterActive = false;
 
   searchValue = new FormControl<string | null>(null);
-  filterValues = new FormControl<string[]>([]);
 
   onClick(component: string) {
     switch (component) {
+      case 'add':
+        this.setSearchActive(false);
+        this.setFilterActive(false);
+        this.selectEvent.emit({ name: 'add' });
+        break;
       case 'search':
         this.setSearchActive(true);
         this.setFilterActive(false);
@@ -93,12 +77,13 @@ export class SelectorBarComponent {
     filter.active = value;
     this.filters = [...this.filters];
     this.cd.detectChanges();
+    this.filterChange();
   }
 
   filterChange() {
     this.selectEvent.emit({
       name: 'filter',
-      keywords: this.filterValues.value ?? [],
+      keywords: this.filters.filter((x) => x.active).map((x) => x.value) ?? [],
     });
   }
 }

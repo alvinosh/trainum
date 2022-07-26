@@ -1,15 +1,15 @@
 export type SelectEvent = AddEvent | SearchEvent | FilterEvent;
 
 export interface AddEvent {
-  name: string;
+  name: 'add';
 }
 
 export interface SearchEvent {
-  name: string;
+  name: 'search';
   keyword: string | null;
 }
 
 export interface FilterEvent {
-  name: string;
+  name: 'filter';
   keywords: string[];
 }

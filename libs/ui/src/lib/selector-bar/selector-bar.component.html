@@ -1,9 +1,5 @@
 <div class="container">
-  <button
-    [class.active]="searchActive"
-    class="add"
-    (click)="setSearchActive(false)"
-  >
+  <button [class.active]="searchActive" class="add" (click)="onClick('add')">
     <fa-icon [icon]="addIcon"></fa-icon>
   </button>
   <button
@@ -20,10 +16,14 @@
       [formControl]="searchValue"
       trainumTxtInput
       type="text"
-      (change)="searchChange()"
+      (ngModelChange)="searchChange()"
     />
   </button>
-  <button class="filter" (click)="onClick('filter')">
+  <button
+    *ngIf="filters.length >= 1"
+    class="filter"
+    (click)="onClick('filter')"
+  >
     <fa-icon [icon]="filterIcon"></fa-icon>
   </button>
 </div>

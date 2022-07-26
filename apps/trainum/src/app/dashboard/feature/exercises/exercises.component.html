@@ -1,1 +1,4 @@
-<trainum-selector-bar></trainum-selector-bar>
+<trainum-selector-bar
+  [filters]="filters"
+  (selectEvent)="onSelectEvent($event)"
+></trainum-selector-bar>

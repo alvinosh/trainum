@@ -15,11 +15,14 @@
     "migrate:test": "dotenv -e ./apps/api/.env.test npx prisma migrate dev",
     "clean:dev": "dotenv -e ./apps/api/.env npx prisma migrate reset",
     "clean:test": "dotenv -e ./apps/api/.env.test npx prisma migrate reset",
+    "seed:dev": "dotenv -e ./apps/api/.env npx prisma db seed",
+    "seed:test": "dotenv -e ./apps/api/.env.test  npx prisma db seed",
     "api": "nx build api --watch",
     "trainum": "nx serve trainum"
   },
   "prisma": {
-    "schema": "apps/api/prisma/schema.prisma"
+    "schema": "apps/api/prisma/schema.prisma",
+    "seed": "ts-node apps/api/src/app/prisma/seeds/main.seed.ts"
   },
   "private": true,
   "dependencies": {
@@ -76,7 +79,7 @@
     "@nrwl/workspace": "14.4.3",
     "@types/argon2": "^0.15.0",
     "@types/jest": "27.4.1",
-    "@types/node": "16.11.7",
+    "@types/node": "^16.11.7",
     "@types/passport-jwt": "^3.0.6",
     "@typescript-eslint/eslint-plugin": "^5.29.0",
     "@typescript-eslint/parser": "^5.29.0",

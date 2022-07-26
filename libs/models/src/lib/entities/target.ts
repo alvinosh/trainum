@@ -1,13 +1,12 @@
 import { Exercise } from './exercise';
 
-export interface User {
+export interface Target {
   id: number;
 
   createdAt: Date;
   updatedAt: Date;
 
-  email: string;
-  username: string;
+  name: string;
 
-  exercises: Exercise[];
+  exercises?: Exercise[];
 }

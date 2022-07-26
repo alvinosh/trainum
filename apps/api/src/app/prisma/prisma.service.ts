@@ -25,6 +25,7 @@ export class PrismaService
     const Targets = await this.target.createMany({
       data: ExerciseTargetSeed().map((x) => {
         return {
+          id: x.id,
           name: x.name,
         };
       }),

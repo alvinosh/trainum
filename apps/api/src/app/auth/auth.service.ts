@@ -7,13 +7,15 @@ import { CreateUserDto, LoginUserDto } from '@trainum/models/auth';
 import { Token } from '@trainum/models/types';
 import { User } from '@trainum/models/entities';
 import { ConfigService } from '@nestjs/config';
+import { ExerciseService } from '../exercise/exercise.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private prisma: PrismaService,
     private jwtService: JwtService,
-    private configService: ConfigService
+    private configService: ConfigService,
+    private exerciseService: ExerciseService
   ) {}
 
   async signup(dto: CreateUserDto): Promise<Token> {
@@ -32,6 +34,8 @@ export class AuthService {
         hash: await argon.hash(dto.password),
       },
     });
+
+    await this.exerciseService.createSeed(user.id);
 
     const tokens = await this.getTokens(user.id);
     await this.updateRTHash(user.id, tokens.refreshToken);

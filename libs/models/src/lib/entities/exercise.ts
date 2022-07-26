@@ -3,17 +3,17 @@ import { Target } from './target';
 import { User } from './user';
 
 export interface Exercise {
-  id: number;
+  id?: number;
 
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 
-  name: string;
+  name?: string;
   description?: string;
-  images: Image[];
+  images?: Image[];
   targets?: Target[];
   type: string;
 
-  userId: number;
-  user: User;
+  userId?: number;
+  user?: User;
 }

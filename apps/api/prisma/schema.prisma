@@ -54,7 +54,7 @@ model Target {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  name        String
+  name        String @unique
 
   exercises ExerciseTarget[]
 

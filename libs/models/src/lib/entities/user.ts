@@ -9,5 +9,5 @@ export interface User {
   email: string;
   username: string;
 
-  exercises: Exercise[];
+  exercises?: Exercise[];
 }

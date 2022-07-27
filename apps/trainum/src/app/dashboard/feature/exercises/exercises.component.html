@@ -2,3 +2,9 @@
   [filters]="filters"
   (selectEvent)="onSelectEvent($event)"
 ></trainum-selector-bar>
+<div class="exercises">
+  <trainum-exercise-card
+    *ngFor="let exercise of exercises"
+    [exercise]="exercise"
+  ></trainum-exercise-card>
+</div>

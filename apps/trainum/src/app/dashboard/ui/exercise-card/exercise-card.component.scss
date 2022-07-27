@@ -1,0 +1,31 @@
+@use 'colors.scss' as colors;
+
+.card {
+  width: 100%;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.image {
+  $size: 4rem;
+  height: $size;
+  width: $size;
+  border-radius: 50%;
+  background-color: colors.ui-get(exercise-card, image-color);
+}
+.content {
+  flex-grow: 1;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  padding: 1rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.content p strong {
+  color: colors.ui-get(exercise-card, title-color);
+}

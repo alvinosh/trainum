@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Exercise } from '@trainum/models/entities';
 import { Filter, SelectEvent } from '@trainum/types';
 import { ExerciseService } from '../../data-access/services/exercise.service';
@@ -6,7 +6,7 @@ import { ExerciseService } from '../../data-access/services/exercise.service';
 @Component({
   selector: 'trainum-exercises',
   templateUrl: './exercises.component.html',
-  styleUrls: ['./exercises.component.css'],
+  styleUrls: ['./exercises.component.scss'],
 })
 export class ExercisesComponent {
   filters: Filter[] = [
@@ -87,6 +87,7 @@ export class ExercisesComponent {
     this.exerciseService.loadExercises();
     this.exerciseService.getExercises().subscribe((exercises) => {
       this.exercises = exercises;
+      console.log('EXERCISES', this.exercises);
     });
   }
 }

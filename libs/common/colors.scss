@@ -51,6 +51,10 @@ $ui-colors: (
     text: get(grey, 600),
     error: get(red, 400),
   ),
+  exercise-card: (
+    image-color: get(grey, 200),
+    title-color: get(grey, 600),
+  ),
   blob: (
     background: get(grey, 100),
     text: get(grey, 400),

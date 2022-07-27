@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Exercise } from '@trainum/models/entities';
 import { Filter, SelectEvent } from '@trainum/types';
+import { ExerciseService } from '../../data-access/services/exercise.service';
 
 @Component({
   selector: 'trainum-exercises',
@@ -65,6 +67,8 @@ export class ExercisesComponent {
     },
   ];
 
+  exercises: Exercise[] = [];
+
   onSelectEvent(event: SelectEvent) {
     switch (event.name) {
       case 'add':
@@ -77,5 +81,12 @@ export class ExercisesComponent {
         console.log('FILTER', event.keywords);
         break;
     }
+  }
+
+  constructor(private exerciseService: ExerciseService) {
+    this.exerciseService.loadExercises();
+    this.exerciseService.getExercises().subscribe((exercises) => {
+      this.exercises = exercises;
+    });
   }
 }

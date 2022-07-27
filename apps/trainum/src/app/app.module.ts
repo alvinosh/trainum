@@ -9,6 +9,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GlobalErrorHandler } from './shared/classes/global-error-handler';
 import { ServerErrorInterceptor } from './shared/interceptors/server-error-interceptor';
 import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
+import { AppStoreModule } from './store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +18,7 @@ import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
     HttpClientModule,
     RouterModule,
     AppRoutingModule,
+    AppStoreModule,
     FontAwesomeModule,
   ],
   providers: [

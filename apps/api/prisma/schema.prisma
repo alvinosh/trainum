@@ -37,7 +37,7 @@ model Exercise {
   name        String
   description String?
   images      Image[]
-  targets     ExerciseTarget[]
+  targets     Target[]
   type        String
 
   userId      Int
@@ -56,24 +56,12 @@ model Target {
 
   name        String @unique
 
-  exercises ExerciseTarget[]
+  exercises Exercise[]
 
   @@map("targets")
 }
 
-model ExerciseTarget {
-  id        Int     @default(autoincrement()) @id
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  exerciseId  Int
-  exercise    Exercise @relation(fields: [exerciseId], references: [id])
-  targetId    Int
-  target      Target @relation(fields: [targetId], references: [id])
-
-  @@map("exercise_targets")
-}
 
 model Image {
   id        Int     @default(autoincrement()) @id

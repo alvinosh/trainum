@@ -35,13 +35,9 @@ export class ExerciseService {
         description: createExerciseDto.description,
         type: createExerciseDto.type,
         targets: {
-          createMany: {
-            data: targets.map((x) => {
-              return {
-                targetId: x.id,
-              };
-            }),
-          },
+          connect: targets.map((x) => ({
+            id: x.id,
+          })),
         },
         user: {
           connect: {

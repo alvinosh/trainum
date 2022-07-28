@@ -7,12 +7,16 @@ export const ExercisesSeed = (): Exercise[] => {
       description: 'Chest Exercise',
       type: 'weighted',
       targets: [{ name: 'chest' }, { name: 'shoulders' }],
+      images: [],
+      equipment: [{ name: 'barbell' }, { name: 'bench' }],
     },
     {
       name: 'Deadlift',
       description: 'Legs Exercise',
       type: 'weighted',
       targets: [{ name: 'back' }, { name: 'legs' }],
+      equipment: [{ name: 'barbell' }],
+      images: [],
     },
   ];
 };

@@ -7,5 +7,18 @@
     <p>
       {{ exercise.description }}
     </p>
+    <div class="list">
+      <fa-icon [icon]="TargetIcon"></fa-icon>
+      <p>
+        {{ exercise.targets | overflow }}
+      </p>
+    </div>
+    <div class="list">
+      <fa-icon [icon]="EquipmentIcon"></fa-icon>
+
+      <p>
+        {{ exercise.equipment | overflow }}
+      </p>
+    </div>
   </div>
 </div>

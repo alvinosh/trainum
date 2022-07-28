@@ -2,7 +2,10 @@ import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 
 import { PrismaClient } from '.prisma/client';
 
-import { ExerciseTargetSeed } from '@trainum/models/seeds/';
+import {
+  ExerciseEquipmentSeed,
+  ExerciseTargetSeed,
+} from '@trainum/models/seeds/';
 
 @Injectable()
 export class PrismaService
@@ -24,6 +27,16 @@ export class PrismaService
 
     const Targets = await this.target.createMany({
       data: ExerciseTargetSeed().map((x) => {
+        return {
+          id: x.id,
+          name: x.name,
+        };
+      }),
+      skipDuplicates: true,
+    });
+
+    const Equipment = await this.equipment.createMany({
+      data: ExerciseEquipmentSeed().map((x) => {
         return {
           id: x.id,
           name: x.name,

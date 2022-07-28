@@ -15,11 +15,10 @@ export class ExerciseService {
         description: x.description,
         name: x.name,
         targets: x.targets.map((x) => x.name),
+        equipment: x.equipment.map((x) => x.name),
         userId: userId,
       };
     });
-
-    console.log(10, exercises);
 
     return Promise.all(exercises.map((x) => this.create(x)));
   }
@@ -29,21 +28,34 @@ export class ExerciseService {
       return createExerciseDto.targets.includes(x.name);
     });
 
+    const equipment = (await this.prisma.equipment.findMany({})).filter((x) => {
+      return createExerciseDto.equipment.includes(x.name);
+    });
+
     return await this.prisma.exercise.create({
       data: {
         name: createExerciseDto.name,
-        description: createExerciseDto.description,
         type: createExerciseDto.type,
+        description: createExerciseDto.description,
+        images: {
+          connect: [],
+        },
         targets: {
-          connect: targets.map((x) => ({
-            id: x.id,
-          })),
+          connect: targets.map((a) => ({ id: a.id })),
+        },
+        equipment: {
+          connect: equipment.map((a) => ({ id: a.id })),
         },
         user: {
           connect: {
             id: createExerciseDto.userId,
           },
         },
+      },
+      include: {
+        targets: true,
+        images: true,
+        equipment: true,
       },
     });
   }
@@ -57,6 +69,8 @@ export class ExerciseService {
       },
       include: {
         targets: true,
+        images: true,
+        equipment: true,
       },
     });
   }

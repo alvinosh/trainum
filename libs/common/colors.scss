@@ -54,6 +54,9 @@ $ui-colors: (
   exercise-card: (
     image-color: get(grey, 200),
     title-color: get(grey, 600),
+    subtitle-color: get(grey, 400),
+    icon-color: get(grey, 300),
+    list-color: get(grey, 300),
   ),
   blob: (
     background: get(grey, 100),

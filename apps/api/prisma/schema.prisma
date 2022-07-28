@@ -38,6 +38,7 @@ model Exercise {
   description String?
   images      Image[]
   targets     Target[]
+  equipment   Equipment[]
   type        String
 
   userId      Int
@@ -60,6 +61,20 @@ model Target {
 
   @@map("targets")
 }
+
+model Equipment {
+  id        Int     @default(autoincrement()) @id
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String @unique
+
+  exercises Exercise[]
+
+  @@map("equipment")
+}
+
 
 
 

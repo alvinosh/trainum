@@ -1,5 +1,6 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   faCalendarAlt,
   faDumbbell,
@@ -45,12 +46,20 @@ export class DashboardComponent implements OnInit {
       url: 'exercises',
     },
   ];
-  active_nav_item: NavItem = this.nav_items[4];
+  active_nav_item: NavItem;
 
   profile_expanded = false;
   settings_expanded = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private location: Location
+  ) {
+    const url = this.location.path().split('/')[2];
+    const index = this.nav_items.findIndex((x) => x.url === url);
+    this.active_nav_item = this.nav_items[index == -1 ? 0 : index];
+  }
 
   ngOnInit(): void {
     return;

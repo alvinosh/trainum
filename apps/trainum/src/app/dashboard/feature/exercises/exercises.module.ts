@@ -5,9 +5,10 @@ import { ExercisesRoutingModule } from './exercises-routing.module';
 import { ExercisesComponent } from './exercises.component';
 import { SelectorBarModule } from '@trainum/ui';
 import { ExerciseCardModule } from '../../ui/exercise-card/exercise-card.module';
+import { FilterPipe } from './pipes/filters.pipe';
 
 @NgModule({
-  declarations: [ExercisesComponent],
+  declarations: [ExercisesComponent, FilterPipe],
   imports: [
     CommonModule,
     ExercisesRoutingModule,

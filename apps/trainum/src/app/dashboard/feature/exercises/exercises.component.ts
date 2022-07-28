@@ -67,6 +67,9 @@ export class ExercisesComponent {
     },
   ];
 
+  active_filters: string[] = [];
+  active_search = '';
+
   exercises: Exercise[] = [];
 
   onSelectEvent(event: SelectEvent) {
@@ -75,10 +78,10 @@ export class ExercisesComponent {
         console.log('OPEN ADD EXERCISE SCREEN');
         break;
       case 'search':
-        console.log('SEARCH', event.keyword);
+        this.active_search = event.keyword ?? '';
         break;
       case 'filter':
-        console.log('FILTER', event.keywords);
+        this.active_filters = event.keywords;
         break;
     }
   }
@@ -87,7 +90,6 @@ export class ExercisesComponent {
     this.exerciseService.loadExercises();
     this.exerciseService.getExercises().subscribe((exercises) => {
       this.exercises = exercises;
-      console.log('EXERCISES', this.exercises);
     });
   }
 }

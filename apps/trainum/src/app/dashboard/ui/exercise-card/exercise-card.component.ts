@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { faDumbbell, faRunning } from '@fortawesome/free-solid-svg-icons';
 import { Exercise } from '@trainum/models/entities';
 
 @Component({
@@ -8,6 +9,9 @@ import { Exercise } from '@trainum/models/entities';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExerciseCardComponent {
+  TargetIcon = faRunning;
+  EquipmentIcon = faDumbbell;
+
   @Input() exercise: Exercise = {
     id: 0,
     name: 'Test',
@@ -17,6 +21,7 @@ export class ExerciseCardComponent {
     updatedAt: new Date(),
     images: [],
     targets: [],
+    equipment: [],
     userId: 0,
   };
 }

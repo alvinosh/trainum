@@ -13,8 +13,6 @@
 .top {
   max-width: 100%;
 
-  /* temp */
-  min-height: 50px;
   /* background-color: red; */
 }
 
@@ -22,12 +20,22 @@
   max-width: 100%;
   flex-grow: 1;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: hidden;
   position: relative;
   // padding: 10px;
 
   /* temp */
   /* background-color: blue; */
+}
+
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: scroll;
+  z-index: 0;
 }
 
 .bottom {

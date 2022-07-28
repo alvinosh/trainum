@@ -4,4 +4,6 @@ export enum Equipments {
   Bench = 'bench',
   Treadmill = 'treadmill',
   Bicycle = 'bicycle',
+  Cable = 'cable',
+  None = 'none',
 }

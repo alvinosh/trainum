@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Exercise } from '@trainum/models/entities';
 import { Filter, SelectEvent } from '@trainum/types';
 import { ExerciseService } from '../../data-access/services/exercise.service';
+import { Targets } from '@trainum/models/enums';
 
 @Component({
   selector: 'trainum-exercises',
@@ -9,63 +10,11 @@ import { ExerciseService } from '../../data-access/services/exercise.service';
   styleUrls: ['./exercises.component.scss'],
 })
 export class ExercisesComponent {
-  filters: Filter[] = [
-    {
-      active: false,
-      label: 'Biceps',
-      value: 'biceps',
-    },
-    {
-      active: false,
-      label: 'Chest',
-      value: 'chest',
-    },
-    {
-      active: false,
-      label: 'Forearm',
-      value: 'forearm',
-    },
-    {
-      active: false,
-      label: 'Legs',
-      value: 'legs',
-    },
-    {
-      active: false,
-      label: 'Shoulders',
-      value: 'shoulders',
-    },
-    {
-      active: false,
-      label: 'Triceps',
-      value: 'triceps',
-    },
-    {
-      active: false,
-      label: 'Back',
-      value: 'back',
-    },
-    {
-      active: false,
-      label: 'Core',
-      value: 'core',
-    },
-    {
-      active: false,
-      label: 'Abs',
-      value: 'abs',
-    },
-    {
-      active: false,
-      label: 'Cardio',
-      value: 'cardio',
-    },
-    {
-      active: false,
-      label: 'Other',
-      value: 'other',
-    },
-  ];
+  filters: Filter[] = Object.values(Targets).map((value) => ({
+    active: false,
+    label: value.charAt(0).toUpperCase() + value.slice(1),
+    value: value,
+  }));
 
   active_filters: string[] = [];
   active_search = '';

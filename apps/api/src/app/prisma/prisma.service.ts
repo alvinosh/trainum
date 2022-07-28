@@ -24,7 +24,7 @@ export class PrismaService
 
   async onModuleInit() {
     await this.$connect();
-
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const Targets = await this.target.createMany({
       data: ExerciseTargetSeed().map((x) => {
         return {
@@ -34,7 +34,7 @@ export class PrismaService
       }),
       skipDuplicates: true,
     });
-
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const Equipment = await this.equipment.createMany({
       data: ExerciseEquipmentSeed().map((x) => {
         return {

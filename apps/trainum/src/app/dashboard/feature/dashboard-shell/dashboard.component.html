@@ -11,7 +11,9 @@
       [expanded]="profile_expanded"
       [type]="ExpandMenuType.Right"
     >
-      <trainum-button (click)="logout()">Log Out</trainum-button>
+      <div class="profile-page">
+        <trainum-button (click)="logout()">Log Out</trainum-button>
+      </div>
     </trainum-expand-menu>
     <trainum-expand-menu
       trainumStopPropagation

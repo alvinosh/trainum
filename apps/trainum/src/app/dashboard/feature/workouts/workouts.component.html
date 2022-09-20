@@ -1,1 +1,7 @@
 <div class="workouts"></div>
+<p class="empty" *ngIf="workouts.length <= 0">
+  You Don't Have Any Workout Routines
+</p>
+<div class="new-button">
+  <trainum-button>Add New Workout Routine</trainum-button>
+</div>

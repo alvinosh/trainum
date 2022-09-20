@@ -59,6 +59,7 @@ model Workout {
   id Int @id @default(autoincrement())
 
   sets     Set[]
+  name     String
   date     DateTime          @default(now())
   template Boolean
   users    WorkoutsOnUsers[]

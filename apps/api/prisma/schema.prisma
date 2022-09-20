@@ -10,26 +10,25 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
-  id        Int     @default(autoincrement()) @id
+  id Int @id @default(autoincrement())
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-
-  email     String  @unique
-  username  String  @unique
-  hash      String
-  hashedRt  String?
+  email    String  @unique
+  username String  @unique
+  hash     String
+  hashedRt String?
 
   exercises Exercise[]
+  workouts   Workout[]
 
   @@map("users")
 }
 
 model Exercise {
-  id        Int     @default(autoincrement()) @id
+  id Int @id @default(autoincrement())
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -41,21 +40,21 @@ model Exercise {
   equipment   Equipment[]
   type        String
 
-  userId      Int
-  user        User  @relation(fields: [userId], references: [id])
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
 
+  sets Set[]
 
   @@map("exercises")
 }
 
-
 model Target {
-  id        Int     @default(autoincrement()) @id
+  id Int @id @default(autoincrement())
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  name        String @unique
+  name String @unique
 
   exercises Exercise[]
 
@@ -63,30 +62,56 @@ model Target {
 }
 
 model Equipment {
-  id        Int     @default(autoincrement()) @id
+  id Int @id @default(autoincrement())
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  name        String @unique
+  name String @unique
 
   exercises Exercise[]
 
   @@map("equipment")
 }
 
-
-
-
 model Image {
-  id        Int     @default(autoincrement()) @id
+  id Int @id @default(autoincrement())
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   url        String
-  exercise   Exercise  @relation(fields: [exerciseId], references: [id])
+  exercise   Exercise @relation(fields: [exerciseId], references: [id])
   exerciseId Int
 
   @@map("images")
+}
+
+model Set {
+  id Int @id @default(autoincrement())
+
+  date DateTime @default(now())
+
+  exerciseId Int
+  exercise   Exercise @relation(fields: [exerciseId], references: [id])
+
+  workoutId Int
+  workout   Workout @relation(fields: [workoutId], references: [id])
+
+  weight Int
+  reps   Int
+  time   Int
+  rir    Int
+}
+
+model Workout {
+  id Int @id @default(autoincrement())
+
+  sets Set[]
+  date DateTime @default(now())
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+
+  template Boolean
 }

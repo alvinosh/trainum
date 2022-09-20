@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
-import { ExerciseService } from '../exercise/exercise.service';
+import { ExerciseService } from '../resources/exercise/exercise.service';
 
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';

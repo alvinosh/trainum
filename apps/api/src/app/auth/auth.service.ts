@@ -7,7 +7,7 @@ import { CreateUserDto, LoginUserDto } from '@trainum/models/auth';
 import { Token } from '@trainum/models/types';
 import { User } from '@trainum/models/entities';
 import { ConfigService } from '@nestjs/config';
-import { ExerciseService } from '../exercise/exercise.service';
+import { ExerciseService } from '../resources/exercise/exercise.service';
 
 @Injectable()
 export class AuthService {

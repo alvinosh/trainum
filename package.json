@@ -15,8 +15,10 @@
     "migrate:test": "dotenv -e ./apps/api/.env.test npx prisma migrate dev",
     "clean:dev": "dotenv -e ./apps/api/.env npx prisma migrate reset",
     "clean:test": "dotenv -e ./apps/api/.env.test npx prisma migrate reset",
-    "api": "nx build api --watch",
-    "trainum": "nx serve trainum"
+    "serve:api": "nx serve api",
+    "serve:web": "nx serve trainum",
+    "build:api": "nx build api",
+    "build:web": "nx build trainum"
   },
   "prisma": {
     "schema": "apps/api/prisma/schema.prisma"
@@ -40,6 +42,7 @@
     "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/jwt": "^8.0.1",
+    "@nestjs/mapped-types": "^1.1.0",
     "@nestjs/passport": "^9.0.0",
     "@nestjs/platform-express": "^8.0.0",
     "@ngrx/effects": "^14.0.2",

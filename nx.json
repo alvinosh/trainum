@@ -5,7 +5,7 @@
     "defaultBase": "master"
   },
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "yarn"
   },
   "implicitDependencies": {
     "package.json": {
@@ -18,21 +18,14 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ],
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
         "accessToken": "MjJlZGYwYjUtZWJmYi00MGRkLWE0NTctYTJlMWYyYjFjMmY4fHJlYWQtd3JpdGU="
       }
     }
   },
   "targetDefaults": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ]
+      "dependsOn": ["^build"]
     }
   },
   "generators": {

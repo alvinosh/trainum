@@ -1,18 +1,20 @@
 import { Injectable } from '@nestjs/common';
+import { Workout } from '@trainum/models/entities';
 import { CreateWorkoutDto } from '../../../../../../libs/models/src/lib/workouts/create-workout.dto';
 import { UpdateWorkoutDto } from '../../../../../../libs/models/src/lib/workouts/update-workout.dto';
 import { PrismaService } from '../../prisma/prisma.service';
+import { WorkoutRepository } from '../../repositories/workout.repository';
 
 @Injectable()
 export class WorkoutsService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private workoutRepository: WorkoutRepository) {}
 
   create(createWorkoutDto: CreateWorkoutDto) {
     return 'This action adds a new workout';
   }
 
-  findAll() {
-    return `This action returns all workouts`;
+  async findAllByUser(userId: number): Promise<Workout[]> {
+    return this.workoutRepository.findAllByUser(userId);
   }
 
   findOne(id: number) {

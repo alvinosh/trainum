@@ -10,6 +10,7 @@ import {
 import { WorkoutsService } from './workouts.service';
 import { CreateWorkoutDto } from '../../../../../../libs/models/src/lib/workouts/create-workout.dto';
 import { UpdateWorkoutDto } from '../../../../../../libs/models/src/lib/workouts/update-workout.dto';
+import { UserId } from '../../common/decorators';
 
 @Controller('workouts')
 export class WorkoutsController {
@@ -21,8 +22,8 @@ export class WorkoutsController {
   }
 
   @Get()
-  findAll() {
-    return this.workoutsService.findAll();
+  findAllByUser(@UserId() userId: number) {
+    return this.workoutsService.findAllByUser(userId);
   }
 
   @Get(':id')

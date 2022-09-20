@@ -64,7 +64,7 @@ export class UserRepository {
     });
   }
 
-  baseSelect: Prisma.UserSelect = {
+  private baseSelect: Prisma.UserSelect = {
     createdAt: true,
     updatedAt: true,
     id: true,
@@ -72,7 +72,7 @@ export class UserRepository {
     username: true,
   };
 
-  allSelect: Prisma.UserSelect = {
+  private allSelect: Prisma.UserSelect = {
     ...this.baseSelect,
     hash: true,
     hashedRt: true,

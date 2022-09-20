@@ -11,7 +11,7 @@
     "test:api": "dotenv -e ./apps/api/.env.test nx test api",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
-    "migrate:dev": "dotenv -e ./apps/api/.env npx prisma migrate dev",
+    "migrate:dev": "dotenv -e ./apps/api/.env npx prisma migrate dev && prisma generate",
     "migrate:test": "dotenv -e ./apps/api/.env.test npx prisma migrate dev",
     "clean:dev": "dotenv -e ./apps/api/.env npx prisma migrate reset",
     "clean:test": "dotenv -e ./apps/api/.env.test npx prisma migrate reset",

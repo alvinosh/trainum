@@ -16,11 +16,12 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  email            String             @unique
-  username         String             @unique
-  hash             String
-  hashedRt         String?
+  email     String             @unique
+  username  String             @unique
+  hash      String
+  hashedRt  String?
   exercises ExercisesOnUsers[]
+  workouts  WorkoutsOnUsers[]
 
   @@map("users")
 }
@@ -38,7 +39,7 @@ model Exercise {
   equipment   Equipment[]
   type        String
 
-  sets             Set[]
+  sets  Set[]
   users ExercisesOnUsers[]
 
   @@map("exercises")
@@ -52,6 +53,25 @@ model ExercisesOnUsers {
   assignedAt DateTime @default(now())
 
   @@id([exerciseId, userId])
+}
+
+model Workout {
+  id Int @id @default(autoincrement())
+
+  sets     Set[]
+  date     DateTime          @default(now())
+  template Boolean
+  users    WorkoutsOnUsers[]
+}
+
+model WorkoutsOnUsers {
+  workout    Workout  @relation(fields: [workoutId], references: [id])
+  workoutId  Int // relation scalar field (used in the `@relation` attribute above)
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int // relation scalar field (used in the `@relation` attribute above)
+  assignedAt DateTime @default(now())
+
+  @@id([workoutId, userId])
 }
 
 model Target {
@@ -108,13 +128,4 @@ model Set {
   reps   Int
   time   Int
   rir    Int
-}
-
-model Workout {
-  id Int @id @default(autoincrement())
-
-  sets Set[]
-  date DateTime @default(now())
-
-  template Boolean
 }

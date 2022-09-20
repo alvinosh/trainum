@@ -8,14 +8,15 @@ import { Token } from '@trainum/models/types';
 import { User } from '@trainum/models/entities';
 import { ConfigService } from '@nestjs/config';
 import { ExerciseService } from '../resources/exercise/exercise.service';
+import { UserRepository } from '../repositories/user.repository';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private prisma: PrismaService,
     private jwtService: JwtService,
     private configService: ConfigService,
-    private exerciseService: ExerciseService
+
+    private userRepository: UserRepository
   ) {}
 
   async signup(dto: CreateUserDto): Promise<Token> {
@@ -27,15 +28,11 @@ export class AuthService {
     if (await this.usernameExists(dto.username))
       throw new BadRequestException('Username Already Exists');
 
-    const user = await this.prisma.user.create({
-      data: {
-        email: dto.email,
-        username: dto.username,
-        hash: await argon.hash(dto.password),
-      },
+    const user = await this.userRepository.create({
+      email: dto.email,
+      username: dto.username,
+      hash: await argon.hash(dto.password),
     });
-
-    await this.exerciseService.createSeed(user.id);
 
     const tokens = await this.getTokens(user.id);
     await this.updateRTHash(user.id, tokens.refreshToken);
@@ -43,9 +40,7 @@ export class AuthService {
   }
 
   async login(dto: LoginUserDto): Promise<Token> {
-    const user = await this.prisma.user.findUnique({
-      where: { username: dto.username },
-    });
+    const user = await this.userRepository.findByUsername(dto.username, true);
 
     if (!user) throw new BadRequestException('Username does not exist');
 
@@ -59,25 +54,13 @@ export class AuthService {
   }
 
   async logout(id: number): Promise<User> {
-    return this.prisma.user.update({
-      where: { id },
-      data: {
-        hashedRt: null,
-      },
-      select: {
-        username: true,
-        email: true,
-        id: true,
-        createdAt: true,
-        updatedAt: true,
-      },
+    return this.userRepository.update(id, {
+      hashedRt: null,
     });
   }
 
   async refresh(id: number, token: string): Promise<Token> {
-    const user = await this.prisma.user.findUnique({
-      where: { id },
-    });
+    const user = await this.userRepository.findByid(id, true);
 
     if (!user || !user.hashedRt) throw new BadRequestException('Invalid Token');
 
@@ -122,27 +105,16 @@ export class AuthService {
   }
 
   async updateRTHash(id: number, token: string): Promise<User> {
-    return this.prisma.user.update({
-      where: { id },
-      data: {
-        hashedRt: await argon.hash(token),
-      },
+    return this.userRepository.update(id, {
+      hashedRt: await argon.hash(token),
     });
   }
 
   async usernameExists(username: string): Promise<boolean> {
-    return (await this.prisma.user.findUnique({
-      where: { username: username },
-    }))
-      ? true
-      : false;
+    return (await this.userRepository.findByUsername(username)) ? true : false;
   }
 
   async emailExists(email: string): Promise<boolean> {
-    return (await this.prisma.user.findUnique({
-      where: { email: email },
-    }))
-      ? true
-      : false;
+    return (await this.userRepository.findByEmail(email)) ? true : false;
   }
 }

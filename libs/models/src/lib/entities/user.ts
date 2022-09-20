@@ -1,16 +1,16 @@
 import { Exercise } from './exercise';
 
 export interface User {
-  id: number;
+  id?: number;
 
   hash?: string;
-  salt?: string;
+  hashedRt?: string;
 
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 
-  email: string;
-  username: string;
+  email?: string;
+  username?: string;
 
   exercises?: Exercise[];
 }

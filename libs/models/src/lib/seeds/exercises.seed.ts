@@ -3,6 +3,7 @@ import { Exercise } from '../entities';
 export const ExercisesSeed = (): Exercise[] => {
   return [
     {
+      id: 0,
       name: 'Bench Press',
       description: 'Chest Exercise',
       type: 'weighted',
@@ -11,6 +12,7 @@ export const ExercisesSeed = (): Exercise[] => {
       equipment: [{ name: 'barbell' }, { name: 'bench' }],
     },
     {
+      id: 1,
       name: 'Deadlift',
       description: 'Legs Exercise',
       type: 'weighted',
@@ -19,6 +21,7 @@ export const ExercisesSeed = (): Exercise[] => {
       images: [],
     },
     {
+      id: 2,
       name: 'Squat',
       description: 'Legs Exercise',
       type: 'weighted',
@@ -27,6 +30,7 @@ export const ExercisesSeed = (): Exercise[] => {
       images: [],
     },
     {
+      id: 3,
       name: 'Overhead Press',
       description: 'Shoulders Exercise',
       type: 'weighted',
@@ -35,6 +39,7 @@ export const ExercisesSeed = (): Exercise[] => {
       images: [],
     },
     {
+      id: 4,
       name: 'Bicep Curl',
       description: 'Arms Exercise',
       type: 'weighted',
@@ -43,6 +48,8 @@ export const ExercisesSeed = (): Exercise[] => {
       images: [],
     },
     {
+      id: 5,
+
       name: 'Tricep Pushdown',
       description: 'Arms Exercise',
       type: 'weighted',
@@ -51,6 +58,8 @@ export const ExercisesSeed = (): Exercise[] => {
       images: [],
     },
     {
+      id: 6,
+
       name: 'Cable Crossover',
       description: 'Arms Exercise',
       type: 'weighted',
@@ -59,6 +68,8 @@ export const ExercisesSeed = (): Exercise[] => {
       images: [],
     },
     {
+      id: 7,
+
       name: 'Cable Curl',
       description: 'Arms Exercise',
       type: 'weighted',
@@ -67,6 +78,8 @@ export const ExercisesSeed = (): Exercise[] => {
       images: [],
     },
     {
+      id: 8,
+
       name: 'Cable Row',
       description: 'Arms Exercise',
       type: 'weighted',
@@ -75,6 +88,8 @@ export const ExercisesSeed = (): Exercise[] => {
       images: [],
     },
     {
+      id: 9,
+
       name: 'Cable Pullover',
       description: 'Arms Exercise',
       type: 'weighted',
@@ -83,6 +98,8 @@ export const ExercisesSeed = (): Exercise[] => {
       images: [],
     },
     {
+      id: 10,
+
       name: 'Plank',
       description: 'Core Exercise',
       type: 'weighted',
@@ -91,6 +108,8 @@ export const ExercisesSeed = (): Exercise[] => {
       images: [],
     },
     {
+      id: 11,
+
       name: 'Leg Press',
       description: 'Legs Exercise',
       type: 'weighted',
@@ -99,6 +118,8 @@ export const ExercisesSeed = (): Exercise[] => {
       images: [],
     },
     {
+      id: 12,
+
       name: 'Running',
       description: 'Core Exercise',
       type: 'weighted',

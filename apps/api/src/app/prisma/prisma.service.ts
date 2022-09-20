@@ -1,9 +1,10 @@
 import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 
-import { PrismaClient } from '.prisma/client';
+import { PrismaClient, Prisma } from '.prisma/client';
 
 import {
   ExerciseEquipmentSeed,
+  ExercisesSeed,
   ExerciseTargetSeed,
 } from '@trainum/models/seeds/';
 
@@ -34,6 +35,7 @@ export class PrismaService
       }),
       skipDuplicates: true,
     });
+
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const Equipment = await this.equipment.createMany({
       data: ExerciseEquipmentSeed().map((x) => {
@@ -44,6 +46,30 @@ export class PrismaService
       }),
       skipDuplicates: true,
     });
+
+    console.log;
+
+    await Promise.all(
+      ExercisesSeed().map((exercise) => {
+        return this.exercise.upsert({
+          where: {
+            id: exercise.id,
+          },
+          update: {},
+          create: {
+            id: exercise.id,
+            name: exercise.name,
+            type: exercise.type,
+            equipment: {
+              connect: exercise.equipment.map((x) => ({ name: x.name })),
+            },
+            targets: {
+              connect: exercise.targets.map((x) => ({ name: x.name })),
+            },
+          },
+        });
+      })
+    );
   }
   async onModuleDestroy() {
     await this.$disconnect();

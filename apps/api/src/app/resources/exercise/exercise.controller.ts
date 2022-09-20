@@ -18,7 +18,7 @@ export class ExerciseController {
 
   @Post()
   create(@Body() createExerciseDto: CreateExerciseDto) {
-    return this.exerciseService.create(createExerciseDto);
+    // return this.exerciseService.create(createExerciseDto);
   }
 
   @Get()

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { Exercise } from '@trainum/models/entities';
+import { Exercise, Workout } from '@trainum/models/entities';
 import { Filter, SelectEvent } from '@trainum/types';
 import { Targets } from '@trainum/models/enums';
+import { WorkoutService } from '../../data-access/services/workouts.service';
 
 @Component({
   selector: 'trainum-workouts',
@@ -9,6 +10,12 @@ import { Targets } from '@trainum/models/enums';
   styleUrls: ['./workouts.component.scss'],
 })
 export class WorkoutsComponent {
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  constructor() {}
+  workouts: Workout[] = [];
+
+  constructor(private workoutService: WorkoutService) {
+    this.workoutService.loadExercises();
+    this.workoutService.getExercises().subscribe((workouts) => {
+      this.workouts = workouts;
+    });
+  }
 }

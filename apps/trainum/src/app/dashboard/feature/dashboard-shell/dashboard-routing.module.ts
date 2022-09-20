@@ -24,6 +24,11 @@ const routes: Routes = [
             (m) => m.ExercisesModule
           ),
       },
+      {
+        path: 'workouts',
+        loadChildren: () =>
+          import('../workouts/workouts.module').then((m) => m.WorkotusModule),
+      },
     ],
   },
 ];

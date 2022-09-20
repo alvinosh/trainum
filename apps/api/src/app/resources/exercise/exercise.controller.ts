@@ -10,7 +10,7 @@ import {
 import { ExerciseService } from './exercise.service';
 
 import { CreateExerciseDto, UpdateExerciseDto } from '@trainum/models/exercise';
-import { UserId } from '../common/decorators';
+import { UserId } from '../../common/decorators';
 
 @Controller('exercise')
 export class ExerciseController {

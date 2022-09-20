@@ -4,9 +4,9 @@ import { AuthService } from './auth.service';
 import { CreateUserDto, LoginUserDto } from '@trainum/models/auth';
 import { Token } from '@trainum/models/types';
 
-import { ATGuard, RTGuard } from '../common/guards';
-import { Public, RT, UserId } from '../common/decorators';
 import { User } from '@trainum/models/entities';
+import { Public, RT, UserId } from '../common/decorators';
+import { RTGuard } from '../common/guards';
 
 @Controller('auth')
 export class AuthController {

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Exercise } from '@trainum/models/entities';
 import { CreateExerciseDto, UpdateExerciseDto } from '@trainum/models/exercise';
 import { ExercisesSeed } from '@trainum/models/seeds';
-import { PrismaService } from '../prisma/prisma.service';
+import { PrismaService } from '../../prisma/prisma.service';
 
 @Injectable()
 export class ExerciseService {

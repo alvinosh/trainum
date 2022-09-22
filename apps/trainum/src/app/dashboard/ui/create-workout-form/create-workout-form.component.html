@@ -44,6 +44,22 @@
         [exercise]="exerciseForm.controls['exercise'].value!"
       ></trainum-exercise-card>
 
+      <p class="empty" *ngIf="exerciseForm.controls.sets.length <= 0">
+        No Sets In This Exercise
+      </p>
+
+      <ng-container
+        *ngFor="
+          let setForm of exerciseForm.controls.sets.controls;
+          let i = index
+        "
+      >
+        <trainum-create-set-form
+          [index]="i"
+          [formGroup]="setForm"
+        ></trainum-create-set-form>
+      </ng-container>
+
       <trainum-hyperlink
         class="center"
         text="Add Set"

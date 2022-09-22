@@ -11,6 +11,7 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExercisesModule } from '../../feature/exercises/exercises.module';
 import { ExerciseCardModule } from '../exercise-card/exercise-card.module';
+import { CreateSetFormModule } from '../create-set-form/create-set-form.module';
 
 @NgModule({
   declarations: [CreateWorkoutFormComponent],
@@ -25,6 +26,7 @@ import { ExerciseCardModule } from '../exercise-card/exercise-card.module';
     ExercisesModule,
     ExerciseCardModule,
     HyperlinkModule,
+    CreateSetFormModule,
   ],
   exports: [CreateWorkoutFormComponent],
 })

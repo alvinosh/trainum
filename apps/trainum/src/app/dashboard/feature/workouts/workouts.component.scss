@@ -16,9 +16,12 @@
 }
 
 .new-button {
+  $padding: 10%;
+
   position: absolute;
-  bottom: 0;
-  width: 100%;
-  padding: 2rem 1rem;
+  left: $padding;
+  right: $padding;
+  bottom: 30px;
+  width: 80%;
   font-size: 0.8rem;
 }

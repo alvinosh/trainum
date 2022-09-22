@@ -9,6 +9,7 @@ import {
 } from '../../../shared/models';
 import { Exercise } from '@trainum/models/entities';
 import { ExerciseService } from '../../data-access/services/exercise.service';
+import { ExerciseType } from '@trainum/models/enums';
 
 @Component({
   selector: 'trainum-create-workout-form',
@@ -71,6 +72,13 @@ export class CreateWorkoutFormComponent {
   }
 
   addSet(form: FormGroup<CreateExerciseForm>) {
-    return;
+    const setGroup = new FormGroup<CreateSetForm>({
+      type: new FormControl(form.controls.exercise.value?.type as ExerciseType),
+      reps: new FormControl(null),
+      rir: new FormControl(null),
+      time: new FormControl(null),
+      weight: new FormControl(null),
+    });
+    form.controls.sets.push(setGroup);
   }
 }

@@ -3,7 +3,7 @@ import { Exercise } from '@trainum/models/entities';
 import { ExerciseType } from '@trainum/models/enums';
 
 export interface CreateSetForm {
-  type: FormControl<ExerciseType>;
+  type: FormControl<ExerciseType | null>;
   weight: FormControl<number | null>;
   reps: FormControl<number | null>;
   time: FormControl<number | null>;

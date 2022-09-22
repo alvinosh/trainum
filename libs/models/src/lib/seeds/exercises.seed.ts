@@ -1,4 +1,5 @@
 import { Exercise } from '../entities';
+import { ExerciseType } from '../enums';
 
 export const ExercisesSeed = (): Exercise[] => {
   return [
@@ -6,7 +7,7 @@ export const ExercisesSeed = (): Exercise[] => {
       id: 0,
       name: 'Bench Press',
       description: 'Chest Exercise',
-      type: 'weighted',
+      type: ExerciseType.Weighted,
       targets: [{ name: 'chest' }, { name: 'shoulders' }],
       images: [],
       equipment: [{ name: 'barbell' }, { name: 'bench' }],
@@ -15,7 +16,7 @@ export const ExercisesSeed = (): Exercise[] => {
       id: 1,
       name: 'Deadlift',
       description: 'Legs Exercise',
-      type: 'weighted',
+      type: ExerciseType.Weighted,
       targets: [{ name: 'back' }, { name: 'legs' }],
       equipment: [{ name: 'barbell' }],
       images: [],
@@ -24,7 +25,7 @@ export const ExercisesSeed = (): Exercise[] => {
       id: 2,
       name: 'Squat',
       description: 'Legs Exercise',
-      type: 'weighted',
+      type: ExerciseType.Weighted,
       targets: [{ name: 'back' }, { name: 'legs' }],
       equipment: [{ name: 'barbell' }],
       images: [],
@@ -33,7 +34,7 @@ export const ExercisesSeed = (): Exercise[] => {
       id: 3,
       name: 'Overhead Press',
       description: 'Shoulders Exercise',
-      type: 'weighted',
+      type: ExerciseType.Weighted,
       targets: [{ name: 'shoulders' }],
       equipment: [{ name: 'barbell' }],
       images: [],
@@ -42,7 +43,7 @@ export const ExercisesSeed = (): Exercise[] => {
       id: 4,
       name: 'Bicep Curl',
       description: 'Arms Exercise',
-      type: 'weighted',
+      type: ExerciseType.Weighted,
       targets: [{ name: 'arms' }],
       equipment: [{ name: 'barbell' }],
       images: [],
@@ -52,7 +53,7 @@ export const ExercisesSeed = (): Exercise[] => {
 
       name: 'Tricep Pushdown',
       description: 'Arms Exercise',
-      type: 'weighted',
+      type: ExerciseType.Weighted,
       targets: [{ name: 'arms' }],
       equipment: [{ name: 'barbell' }],
       images: [],
@@ -62,7 +63,7 @@ export const ExercisesSeed = (): Exercise[] => {
 
       name: 'Cable Crossover',
       description: 'Arms Exercise',
-      type: 'weighted',
+      type: ExerciseType.Weighted,
       targets: [{ name: 'arms' }],
       equipment: [{ name: 'cable' }],
       images: [],
@@ -72,7 +73,7 @@ export const ExercisesSeed = (): Exercise[] => {
 
       name: 'Cable Curl',
       description: 'Arms Exercise',
-      type: 'weighted',
+      type: ExerciseType.Weighted,
       targets: [{ name: 'arms' }],
       equipment: [{ name: 'cable' }],
       images: [],
@@ -82,7 +83,7 @@ export const ExercisesSeed = (): Exercise[] => {
 
       name: 'Cable Row',
       description: 'Arms Exercise',
-      type: 'weighted',
+      type: ExerciseType.Weighted,
       targets: [{ name: 'arms' }],
       equipment: [{ name: 'cable' }],
       images: [],
@@ -92,7 +93,7 @@ export const ExercisesSeed = (): Exercise[] => {
 
       name: 'Cable Pullover',
       description: 'Arms Exercise',
-      type: 'weighted',
+      type: ExerciseType.Weighted,
       targets: [{ name: 'arms' }],
       equipment: [{ name: 'cable' }],
       images: [],
@@ -102,7 +103,7 @@ export const ExercisesSeed = (): Exercise[] => {
 
       name: 'Plank',
       description: 'Core Exercise',
-      type: 'weighted',
+      type: ExerciseType.Timed,
       targets: [{ name: 'core' }],
       equipment: [{ name: 'none' }],
       images: [],
@@ -112,7 +113,7 @@ export const ExercisesSeed = (): Exercise[] => {
 
       name: 'Leg Press',
       description: 'Legs Exercise',
-      type: 'weighted',
+      type: ExerciseType.Weighted,
       targets: [{ name: 'back' }, { name: 'legs' }],
       equipment: [{ name: 'barbell' }],
       images: [],
@@ -122,7 +123,7 @@ export const ExercisesSeed = (): Exercise[] => {
 
       name: 'Running',
       description: 'Core Exercise',
-      type: 'weighted',
+      type: ExerciseType.Timed,
       targets: [{ name: 'core' }, { name: 'cardio' }],
       equipment: [{ name: 'treadmill' }],
       images: [],

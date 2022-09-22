@@ -1,8 +1,8 @@
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { Exercise } from '@trainum/models/entities';
 
 export interface CreateSetForm {
-  date: FormControl<Date | null>;
-  exerciseId: FormControl<number | null>;
+  exercise: FormControl<Exercise | null>;
   weight: FormControl<number | null>;
   reps: FormControl<number | null>;
   time: FormControl<number | null>;

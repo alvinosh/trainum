@@ -61,7 +61,6 @@ export class AuthService {
 
   async refresh(id: number, token: string): Promise<Token> {
     const user = await this.userRepository.findByid(id, true);
-
     if (!user || !user.hashedRt) throw new BadRequestException('Invalid Token');
 
     const isValid = await argon.verify(user.hashedRt, token);

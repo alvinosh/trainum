@@ -4,7 +4,11 @@
   [type]="ExpandMenuType.Bottom"
 >
   <div class="exercise-content">
-    <trainum-exercises class="exercises"> </trainum-exercises>
+    <trainum-exercises
+      class="exercises"
+      (exerciseSelected)="addExercise($event)"
+    >
+    </trainum-exercises>
 
     <trainum-button class="new-button" (click)="closeExercisesPage()"
       >Back</trainum-button
@@ -24,17 +28,19 @@
   />
   <h3 class="space-bottom-3">Exercises</h3>
 
-  <div class="space-bottom-2" formArrayName="sets">
-    <ng-container *ngFor="let setForm of sets.controls">
-      <div>Set</div>
-    </ng-container>
-
+  <div class="selected space-bottom-2" formArrayName="sets">
     <p class="empty" *ngIf="sets.controls.length <= 0">
       No Exercises In This Routine
     </p>
-  </div>
 
-  <trainum-button [invert]="true" (click)="openExercisesPage()"
-    >Add Exercise</trainum-button
-  >
+    <trainum-button [invert]="true" (click)="openExercisesPage()"
+      >Add Exercise</trainum-button
+    >
+
+    <ng-container *ngFor="let setForm of sets.controls">
+      <trainum-exercise-card
+        [exercise]="setForm.controls['exercise'].value!"
+      ></trainum-exercise-card>
+    </ng-container>
+  </div>
 </form>

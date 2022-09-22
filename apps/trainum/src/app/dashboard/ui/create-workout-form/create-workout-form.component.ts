@@ -33,7 +33,9 @@ export class CreateWorkoutFormComponent {
   }
 
   get sets() {
-    return this.workoutForm.controls['sets'] as FormArray;
+    return this.workoutForm.controls['sets'] as FormArray<
+      FormGroup<CreateSetForm>
+    >;
   }
 
   openExercisesPage() {
@@ -42,5 +44,17 @@ export class CreateWorkoutFormComponent {
 
   closeExercisesPage() {
     this.exercisePageExpanded = false;
+  }
+
+  addExercise(exercise: Exercise) {
+    const setGroup = new FormGroup<CreateSetForm>({
+      exercise: new FormControl(exercise),
+      reps: new FormControl(null),
+      rir: new FormControl(null),
+      time: new FormControl(null),
+      weight: new FormControl(null),
+    });
+    this.sets.push(setGroup);
+    this.closeExercisesPage();
   }
 }

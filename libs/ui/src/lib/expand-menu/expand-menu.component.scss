@@ -8,7 +8,7 @@ $animation-speed: 1s;
   width: $width;
   height: 100%;
   background-color: colors.ui-get(expand-menu, background);
-
+  overflow-y: scroll;
   z-index: 2;
 }
 .container.left {

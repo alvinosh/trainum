@@ -1,6 +1,8 @@
 @use 'colors.scss' as colors;
 
 .container {
+  height: 100%;
+  overflow-y: scroll;
   padding: 1rem;
   color: colors.ui-get(dark-text);
 }
@@ -44,4 +46,11 @@
 .exercises {
   overflow-y: scroll;
   flex-grow: 1;
+}
+
+.selected {
+  display: flex;
+
+  flex-flow: column nowrap;
+  gap: 10px;
 }

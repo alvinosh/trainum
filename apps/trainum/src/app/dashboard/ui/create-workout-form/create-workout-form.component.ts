@@ -81,4 +81,8 @@ export class CreateWorkoutFormComponent {
     });
     form.controls.sets.push(setGroup);
   }
+
+  addWorkout() {
+    console.log(1, this.workoutForm.getRawValue());
+  }
 }

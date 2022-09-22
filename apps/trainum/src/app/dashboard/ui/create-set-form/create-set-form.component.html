@@ -1,28 +1,28 @@
 <form [formGroup]="formGroup!">
-  <h3>SET {{ index }}</h3>
+  <h3>SET {{ index + 1 }}</h3>
   <p>{{ formGroup!.controls.type.value | uppercase }}</p>
   <div class="inputs">
     <input
       *ngIf="formGroup!.controls.type.value === ExerciseType.Weighted"
-      type="text"
+      type="number"
       placeholder="Reps"
       formControlName="reps"
     />
     <input
       *ngIf="formGroup!.controls.type.value === ExerciseType.BodyWeight"
-      type="text"
+      type="number"
       placeholder="Reps"
       formControlName="reps"
     />
     <input
       *ngIf="formGroup!.controls.type.value === ExerciseType.Weighted"
-      type="text"
+      type="number"
       placeholder="Weight"
       formControlName="weight"
     />
     <input
       *ngIf="formGroup!.controls.type.value === ExerciseType.Timed"
-      type="text"
+      type="number"
       placeholder="Seconds"
       formControlName="time"
     />

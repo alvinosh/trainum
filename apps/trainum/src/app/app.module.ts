@@ -1,5 +1,6 @@
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,9 +15,11 @@ import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    HttpClientModule,
+    BrowserAnimationsModule,
     RouterModule,
     AppRoutingModule,
+
+    HttpClientModule,
     FontAwesomeModule,
   ],
   providers: [

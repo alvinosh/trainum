@@ -1,0 +1,10 @@
+@use 'colors.scss' as colors;
+
+.container {
+  padding: 1rem;
+  color: colors.ui-get(dark-text);
+}
+
+.space-bottom {
+  margin-bottom: 0.5rem;
+}

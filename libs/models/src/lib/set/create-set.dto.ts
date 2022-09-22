@@ -1,4 +1,4 @@
-export class CreateSetDto {
+export interface CreateSetDto {
   date: Date;
   exerciseId: number;
   weight: number;

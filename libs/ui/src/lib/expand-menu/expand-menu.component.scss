@@ -1,15 +1,15 @@
 @use 'colors.scss' as colors;
 
 $width: 100%;
+$animation-speed: 1s;
 
 .container {
   position: absolute;
   width: $width;
-  top: 0;
-  bottom: 0;
+  height: 100%;
   background-color: colors.ui-get(expand-menu, background);
-  transition: all 0.2s ease-in-out;
-  z-index: 10;
+
+  z-index: 2;
 }
 .container.left {
   border-right: 1px solid colors.ui-get(expand-menu, border);
@@ -18,18 +18,10 @@ $width: 100%;
   border-left: 1px solid colors.ui-get(expand-menu, border);
 }
 
-.left.not_expanded {
-  left: -$width;
+.hidden {
+  display: none;
 }
 
-.left.expanded {
-  left: 0;
-}
-
-.right.not_expanded {
-  right: -$width;
-}
-
-.right.expanded {
-  right: 0;
+.shown {
+  display: block;
 }

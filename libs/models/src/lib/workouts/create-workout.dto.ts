@@ -1,7 +1,8 @@
 import { CreateSetDto } from '../set';
 
-export class CreateWorkoutDto {
+export interface CreateWorkoutDto {
   sets: CreateSetDto[];
+  name: string;
   date?: Date;
   template?: boolean;
 }

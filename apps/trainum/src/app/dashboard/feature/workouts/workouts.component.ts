@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Exercise, Workout } from '@trainum/models/entities';
-import { Filter, SelectEvent } from '@trainum/types';
+import { ExpandMenuType, Filter, SelectEvent } from '@trainum/types';
 import { Targets } from '@trainum/models/enums';
 import { WorkoutService } from '../../data-access/services/workouts.service';
 
@@ -10,12 +10,24 @@ import { WorkoutService } from '../../data-access/services/workouts.service';
   styleUrls: ['./workouts.component.scss'],
 })
 export class WorkoutsComponent {
+  ExpandMenuType = ExpandMenuType;
+
   workouts: Workout[] = [];
+
+  addPageExpanded = true;
 
   constructor(private workoutService: WorkoutService) {
     this.workoutService.loadExercises();
     this.workoutService.getExercises().subscribe((workouts) => {
       this.workouts = workouts;
     });
+  }
+
+  openWorkoutPage(): void {
+    this.addPageExpanded = true;
+  }
+
+  closeWorkoutPage(): void {
+    this.addPageExpanded = false;
   }
 }

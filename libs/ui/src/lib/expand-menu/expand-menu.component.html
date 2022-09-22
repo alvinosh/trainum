@@ -1,9 +1,8 @@
 <div
-  class="container active"
-  [class.left]="ExpandMenuType.Left === type"
-  [class.right]="ExpandMenuType.Right === type"
-  [class.expanded]="expanded"
-  [class.not_expanded]="!expanded"
+  class="container"
+  [@expanded]="getState()"
+  (@expanded.done)="updateViewEnd()"
+  [class.hidden]="!view"
 >
   <ng-content></ng-content>
 </div>

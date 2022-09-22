@@ -33,7 +33,7 @@ li {
   font-size: 1.8rem;
   color: colors.ui-get(navbar, unactive);
   text-align: center;
-  z-index: 2;
+  z-index: 101;
   transition: all $transition-speed ease-in-out;
 }
 
@@ -44,7 +44,7 @@ li.active {
 
 .selector {
   position: absolute;
-  z-index: 1;
+  z-index: 100;
   left: 0;
   .square {
     width: $selector-size;

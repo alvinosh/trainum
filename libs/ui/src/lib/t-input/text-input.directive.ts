@@ -12,7 +12,7 @@ export class TextInputDirective {
       height: 3rem;
     
       padding: 0rem 0.6rem;
-      border: 1px solid grey;
+      border: 1px solid #C9C9C9;
       border-radius: 0.25rem;
     
       font-size: 1rem;

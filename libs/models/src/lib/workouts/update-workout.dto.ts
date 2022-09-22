@@ -1,4 +1,9 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { CreateWorkoutDto } from './create-workout.dto';
+import { CreateSetDto, UpdateSetDto } from '../set';
 
-export class UpdateWorkoutDto extends PartialType(CreateWorkoutDto) {}
+export interface UpdateWorkoutDto {
+  sets: UpdateSetDto[];
+  name: string;
+  date?: Date;
+  template?: boolean;
+}

@@ -1,7 +1,20 @@
+<trainum-expand-menu
+  trainumStopPropagation
+  [expanded]="addPageExpanded"
+  [type]="ExpandMenuType.Bottom"
+>
+  <trainum-create-workout-form> </trainum-create-workout-form>
+
+  <trainum-button class="new-button" (click)="closeWorkoutPage()"
+    >Back</trainum-button
+  >
+</trainum-expand-menu>
+
 <div class="workouts"></div>
 <p class="empty" *ngIf="workouts.length <= 0">
   You Don't Have Any Workout Routines
 </p>
-<div class="new-button">
-  <trainum-button>Add New Workout Routine</trainum-button>
-</div>
+
+<trainum-button class="new-button" (click)="openWorkoutPage()"
+  >Add New Workout Routine</trainum-button
+>

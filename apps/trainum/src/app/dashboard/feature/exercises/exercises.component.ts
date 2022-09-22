@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Exercise } from '@trainum/models/entities';
 import { Filter, SelectEvent } from '@trainum/types';
 import { ExerciseService } from '../../data-access/services/exercise.service';
@@ -21,6 +21,9 @@ export class ExercisesComponent {
 
   exercises: Exercise[] = [];
 
+  @Output() exerciseSelected: EventEmitter<Exercise> =
+    new EventEmitter<Exercise>();
+
   onSelectEvent(event: SelectEvent) {
     switch (event.name) {
       case 'add':
@@ -40,5 +43,9 @@ export class ExercisesComponent {
     this.exerciseService.getExercises().subscribe((exercises) => {
       this.exercises = exercises;
     });
+  }
+
+  exerciseClicked($event: Exercise) {
+    this.exerciseSelected.emit($event);
   }
 }

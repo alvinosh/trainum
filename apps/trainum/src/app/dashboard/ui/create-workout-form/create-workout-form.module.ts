@@ -1,8 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CreateWorkoutFormComponent } from './create-workout-form.component';
-import { TextInputDirectiveModule, TextInputModule } from '@trainum/ui';
+import {
+  ButtonModule,
+  ExpandMenuModule,
+  TextInputDirectiveModule,
+  TextInputModule,
+} from '@trainum/ui';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ExerciseCardModule } from '../exercise-card/exercise-card.module';
+import { ExercisesModule } from '../../feature/exercises/exercises.module';
 
 @NgModule({
   declarations: [CreateWorkoutFormComponent],
@@ -12,6 +19,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TextInputDirectiveModule,
     FormsModule,
     ReactiveFormsModule,
+    ButtonModule,
+    ExpandMenuModule,
+    ExercisesModule,
   ],
   exports: [CreateWorkoutFormComponent],
 })

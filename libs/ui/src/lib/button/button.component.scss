@@ -10,7 +10,13 @@ button {
   background-color: c.ui-get(button, background);
   color: c.ui-get(button, text);
   font-family: 'Inter', sans-serif;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   font-size: 1.2em;
+}
+
+.invert {
+  color: c.ui-get(button, background);
+  background-color: c.ui-get(button, text);
 }
 
 button:active {

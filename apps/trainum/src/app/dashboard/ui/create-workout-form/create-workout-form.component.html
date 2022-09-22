@@ -1,10 +1,40 @@
+<trainum-expand-menu
+  trainumStopPropagation
+  [expanded]="exercisePageExpanded"
+  [type]="ExpandMenuType.Bottom"
+>
+  <div class="exercise-content">
+    <trainum-exercises class="exercises"> </trainum-exercises>
+
+    <trainum-button class="new-button" (click)="closeExercisesPage()"
+      >Back</trainum-button
+    >
+  </div>
+</trainum-expand-menu>
+
 <form [formGroup]="workoutForm" class="container">
-  <h2 id="title" class="space-bottom">Create Workout Routine</h2>
-  <hr class="space-bottom" />
+  <h2 id="title" class="space-bottom-1">Create Workout Routine</h2>
+  <hr class="space-bottom-1" />
   <input
+    class="space-bottom-2"
     formControlName="name"
     trainumTxtInput
     type="text"
     placeholder="Name"
   />
+  <h3 class="space-bottom-3">Exercises</h3>
+
+  <div class="space-bottom-2" formArrayName="sets">
+    <ng-container *ngFor="let setForm of sets.controls">
+      <div>Set</div>
+    </ng-container>
+
+    <p class="empty" *ngIf="sets.controls.length <= 0">
+      No Exercises In This Routine
+    </p>
+  </div>
+
+  <trainum-button [invert]="true" (click)="openExercisesPage()"
+    >Add Exercise</trainum-button
+  >
 </form>

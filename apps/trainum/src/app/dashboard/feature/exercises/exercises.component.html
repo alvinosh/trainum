@@ -4,6 +4,7 @@
 ></trainum-selector-bar>
 <div class="exercises">
   <trainum-exercise-card
+    (click)="exerciseClicked(exercise)"
     *ngFor="let exercise of exercises | filter: active_filters:active_search"
     [exercise]="exercise"
   ></trainum-exercise-card>

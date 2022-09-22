@@ -15,5 +15,6 @@ import { FilterPipe } from './pipes/filters.pipe';
     SelectorBarModule,
     ExerciseCardModule,
   ],
+  exports: [ExercisesComponent],
 })
 export class ExercisesModule {}

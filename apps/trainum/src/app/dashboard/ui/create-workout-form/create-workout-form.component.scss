@@ -49,8 +49,13 @@
 }
 
 .selected {
+  overflow-x: hidden;
   display: flex;
 
   flex-flow: column nowrap;
   gap: 10px;
+}
+
+.center {
+  margin: auto;
 }

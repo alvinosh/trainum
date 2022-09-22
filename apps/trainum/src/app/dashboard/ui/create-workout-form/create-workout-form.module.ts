@@ -4,6 +4,7 @@ import { CreateWorkoutFormComponent } from './create-workout-form.component';
 import {
   ButtonModule,
   ExpandMenuModule,
+  HyperlinkModule,
   TextInputDirectiveModule,
   TextInputModule,
 } from '@trainum/ui';
@@ -23,6 +24,7 @@ import { ExerciseCardModule } from '../exercise-card/exercise-card.module';
     ExpandMenuModule,
     ExercisesModule,
     ExerciseCardModule,
+    HyperlinkModule,
   ],
   exports: [CreateWorkoutFormComponent],
 })

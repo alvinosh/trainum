@@ -29,7 +29,7 @@
   <h3 class="space-bottom-3">Exercises</h3>
 
   <div class="selected space-bottom-2" formArrayName="sets">
-    <p class="empty" *ngIf="sets.controls.length <= 0">
+    <p class="empty" *ngIf="exerciseArray.controls.length <= 0">
       No Exercises In This Routine
     </p>
 
@@ -37,10 +37,18 @@
       >Add Exercise</trainum-button
     >
 
-    <ng-container *ngFor="let setForm of sets.controls">
+    <ng-container *ngFor="let exerciseForm of exerciseArray.controls">
       <trainum-exercise-card
-        [exercise]="setForm.controls['exercise'].value!"
+        (draggedAway)="deleteExercise($event)"
+        [draggable]="true"
+        [exercise]="exerciseForm.controls['exercise'].value!"
       ></trainum-exercise-card>
+
+      <trainum-hyperlink
+        class="center"
+        text="Add Set"
+        (click)="addSet(exerciseForm)"
+      ></trainum-hyperlink>
     </ng-container>
   </div>
 </form>

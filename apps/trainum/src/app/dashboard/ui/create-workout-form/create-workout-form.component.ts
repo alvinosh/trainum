@@ -2,7 +2,11 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ExpandMenuType, InputTypes } from '@trainum/types';
 import { CreateWorkoutDto } from '@trainum/models/workouts';
-import { CreateSetForm, createWorkoutForm } from '../../../shared/models';
+import {
+  CreateExerciseForm,
+  CreateSetForm,
+  createWorkoutForm,
+} from '../../../shared/models';
 import { Exercise } from '@trainum/models/entities';
 import { ExerciseService } from '../../data-access/services/exercise.service';
 
@@ -22,7 +26,10 @@ export class CreateWorkoutFormComponent {
 
   workoutForm: FormGroup = new FormGroup<createWorkoutForm>({
     name: new FormControl<string>('', [Validators.required]),
-    sets: new FormArray<FormGroup<CreateSetForm>>([], [Validators.required]),
+    exercises: new FormArray<FormGroup<CreateExerciseForm>>(
+      [],
+      [Validators.required]
+    ),
   });
 
   constructor(private exerciseService: ExerciseService) {
@@ -32,9 +39,9 @@ export class CreateWorkoutFormComponent {
     });
   }
 
-  get sets() {
-    return this.workoutForm.controls['sets'] as FormArray<
-      FormGroup<CreateSetForm>
+  get exerciseArray() {
+    return this.workoutForm.controls['exercises'] as FormArray<
+      FormGroup<CreateExerciseForm>
     >;
   }
 
@@ -47,14 +54,23 @@ export class CreateWorkoutFormComponent {
   }
 
   addExercise(exercise: Exercise) {
-    const setGroup = new FormGroup<CreateSetForm>({
+    const exerciseGroup = new FormGroup<CreateExerciseForm>({
       exercise: new FormControl(exercise),
-      reps: new FormControl(null),
-      rir: new FormControl(null),
-      time: new FormControl(null),
-      weight: new FormControl(null),
+      sets: new FormArray<FormGroup<CreateSetForm>>([]),
     });
-    this.sets.push(setGroup);
+    this.exerciseArray.push(exerciseGroup);
     this.closeExercisesPage();
+  }
+
+  deleteExercise(exercise: Exercise) {
+    const idx = this.exerciseArray.value.findIndex((x) => {
+      return x.exercise?.name == exercise.name;
+    });
+
+    this.exerciseArray.removeAt(idx);
+  }
+
+  addSet(form: FormGroup<CreateExerciseForm>) {
+    return;
   }
 }

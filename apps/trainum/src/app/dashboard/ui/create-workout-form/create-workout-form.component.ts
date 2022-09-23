@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ExpandMenuType, InputTypes } from '@trainum/types';
 import { CreateWorkoutDto } from '@trainum/models/workouts';
@@ -20,6 +26,8 @@ import { ExerciseType } from '@trainum/models/enums';
 export class CreateWorkoutFormComponent {
   InputType = InputTypes;
   ExpandMenuType = ExpandMenuType;
+
+  @Output() closeEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   exercisePageExpanded = false;
 
@@ -88,5 +96,9 @@ export class CreateWorkoutFormComponent {
 
   addWorkout() {
     console.log(1, this.workoutForm.getRawValue());
+  }
+
+  closePage() {
+    this.closeEvent.emit(true);
   }
 }

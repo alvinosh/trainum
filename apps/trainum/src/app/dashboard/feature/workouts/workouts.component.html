@@ -3,11 +3,8 @@
   [expanded]="addPageExpanded"
   [type]="ExpandMenuType.Bottom"
 >
-  <trainum-create-workout-form> </trainum-create-workout-form>
-
-  <trainum-button class="new-button" (click)="closeWorkoutPage()"
-    >Back</trainum-button
-  >
+  <trainum-create-workout-form (closeEvent)="closeWorkoutPage()">
+  </trainum-create-workout-form>
 </trainum-expand-menu>
 
 <div class="workouts"></div>

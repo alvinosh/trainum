@@ -46,8 +46,6 @@ export class DragableDirective {
         deltaX = $event.touches[0].clientX - this.dragStart[0];
       }
 
-      console.log(deltaX);
-
       this.elementRef.nativeElement.style.left = deltaX.toString() + 'px';
 
       if (

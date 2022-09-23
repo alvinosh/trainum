@@ -17,10 +17,13 @@
 </trainum-expand-menu>
 
 <form [formGroup]="workoutForm" class="container">
-  <h2 id="title" class="space-bottom-1">Create Workout Routine</h2>
-  <hr class="space-bottom-1" />
+  <trainum-button [invert]="true" (click)="closePage()">Back</trainum-button>
+
+  <h2 id="title">Workout</h2>
+
+  <hr />
+
   <input
-    class="space-bottom-2"
     formControlName="name"
     trainumTxtInput
     type="text"
@@ -28,14 +31,14 @@
   />
   <h3 class="space-bottom-3">Exercises</h3>
 
-  <div class="selected space-bottom-2" formArrayName="sets">
+  <trainum-button [invert]="true" (click)="openExercisesPage()"
+    >Add Exercise</trainum-button
+  >
+
+  <div class="selected" formArrayName="sets">
     <p class="empty" *ngIf="exerciseArray.controls.length <= 0">
       No Exercises In This Routine
     </p>
-
-    <trainum-button [invert]="true" (click)="openExercisesPage()"
-      >Add Exercise</trainum-button
-    >
 
     <ng-container *ngFor="let exerciseForm of exerciseArray.controls">
       <trainum-exercise-card

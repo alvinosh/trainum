@@ -5,6 +5,9 @@
   overflow-y: scroll;
   padding: 1rem;
   color: colors.ui-get(dark-text);
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
 }
 
 .space-bottom-1 {
@@ -54,10 +57,11 @@
 
   flex-flow: column nowrap;
   gap: 10px;
+  transition: all 0.2s;
 }
 
 .bottom {
-  padding-bottom: 8rem;
+  padding-bottom: 1rem;
 }
 
 .center {

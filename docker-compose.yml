@@ -15,24 +15,6 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
     restart: unless-stopped
-  postgres-test:
-    image: postgres:latest
-    build:
-      cache_from:
-        - postgres-dev
-    container_name: postgres-test
-    depends_on:
-      - postgres-dev
-    expose:
-      - 6001
-    ports:
-      - 6001:6001
-    command: -p 6001
-    environment:
-      POSTGRES_USER: trainum_test_user
-      POSTGRES_PASSWORD: trainum
-      POSTGRES_DB: trainum_test_db
-    restart: unless-stopped
   trainum:
     stdin_open: true
     tty: true
@@ -52,7 +34,6 @@ services:
       - /app/prisma
     links:
       - postgres-dev
-      - postgres-test
     environment:
       DATABASE_URL: postgresql://trainum_user:trainum@postgres-dev:6000/trainum_db?schema=public
       JWT_AT_SECRET: alvialvi
@@ -63,7 +44,6 @@ services:
     container_name: api
     depends_on:
       - postgres-dev
-      - postgres-test
     ports:
       - '3333:3333'
     restart: unless-stopped

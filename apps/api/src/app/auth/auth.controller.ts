@@ -24,16 +24,11 @@ export class AuthController {
     return this.authService.login(dto);
   }
 
-  @Post('logout')
-  async logout(@UserId() id: number): Promise<User> {
-    return this.authService.logout(id);
-  }
-
   @Post('refresh')
   @Public()
   @UseGuards(RTGuard)
-  async refresh(@UserId() id: number, @RT() rt: string): Promise<Token> {
-    return this.authService.refresh(id, rt);
+  async refresh(@UserId() id: number): Promise<Token> {
+    return this.authService.refresh(id);
   }
 
   @Get('username-exists/:username')

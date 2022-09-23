@@ -13,6 +13,8 @@ COPY dist/apps/api .
 
 RUN npm install
 
+RUN npx prisma migrate dev
+
 RUN npx prisma generate
 
 EXPOSE 3333

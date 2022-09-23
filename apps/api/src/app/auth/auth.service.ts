@@ -35,7 +35,6 @@ export class AuthService {
     });
 
     const tokens = await this.getTokens(user.id);
-    await this.updateRTHash(user.id, tokens.refreshToken);
     return tokens;
   }
 
@@ -49,25 +48,14 @@ export class AuthService {
       throw new BadRequestException('Username or password is incorrect');
 
     const tokens = await this.getTokens(user.id);
-    await this.updateRTHash(user.id, tokens.refreshToken);
     return tokens;
   }
 
-  async logout(id: number): Promise<User> {
-    return this.userRepository.update(id, {
-      hashedRt: null,
-    });
-  }
-
-  async refresh(id: number, token: string): Promise<Token> {
+  async refresh(id: number): Promise<Token> {
     const user = await this.userRepository.findByid(id, true);
-    if (!user || !user.hashedRt) throw new BadRequestException('Invalid Token');
-
-    const isValid = await argon.verify(user.hashedRt, token);
-    if (!isValid) throw new BadRequestException('Invalid Token');
+    if (!user) throw new BadRequestException('Invalid Token');
 
     const tokens = await this.getTokens(user.id);
-    await this.updateRTHash(user.id, tokens.refreshToken);
     return tokens;
   }
 
@@ -101,12 +89,6 @@ export class AuthService {
       accessToken,
       refreshToken,
     };
-  }
-
-  async updateRTHash(id: number, token: string): Promise<User> {
-    return this.userRepository.update(id, {
-      hashedRt: await argon.hash(token),
-    });
   }
 
   async usernameExists(username: string): Promise<boolean> {

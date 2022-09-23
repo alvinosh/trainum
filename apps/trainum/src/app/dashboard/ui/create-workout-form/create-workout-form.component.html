@@ -57,6 +57,7 @@
         <trainum-create-set-form
           [index]="i"
           [formGroup]="setForm"
+          (removedEvent)="deleteSet(exerciseForm, i)"
         ></trainum-create-set-form>
       </ng-container>
 

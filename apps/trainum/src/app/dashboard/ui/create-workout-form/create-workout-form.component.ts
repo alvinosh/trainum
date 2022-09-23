@@ -82,6 +82,10 @@ export class CreateWorkoutFormComponent {
     form.controls.sets.push(setGroup);
   }
 
+  deleteSet(exercise: FormGroup<CreateExerciseForm>, idx: number) {
+    exercise.controls.sets.removeAt(idx);
+  }
+
   addWorkout() {
     console.log(1, this.workoutForm.getRawValue());
   }

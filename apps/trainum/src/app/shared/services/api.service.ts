@@ -16,9 +16,7 @@ export class ApiService {
 
   public createUrl(action: string, isMockAPI: boolean = false): string {
     const urlBuilder: UrlBuilder = new UrlBuilder(
-      isMockAPI
-        ? this.constants.API_MOCK_ENDPOINT
-        : this.constants.API_ENDPOINT,
+      this.constants.API_ENDPOINT,
       action
     );
     return urlBuilder.toString();

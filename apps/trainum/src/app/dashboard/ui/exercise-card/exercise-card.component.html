@@ -1,8 +1,9 @@
 <div
   style="position: relative"
-  #dragable
-  (mousedown)="dragDown($event)"
   class="card"
+  trainumDragable
+  [draggable]="draggable"
+  (draggedAway)="dragged($event)"
 >
   <div class="image"></div>
   <div class="content">
